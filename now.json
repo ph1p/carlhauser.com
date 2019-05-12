@@ -2,8 +2,7 @@
   "version": 2,
   "name": "carlhauser",
   "alias": [
-    "carlhauser",
-    "todo.carlhauser.com"
+    "carlhauser"
   ],
   "builds": [
     {
