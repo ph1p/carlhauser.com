@@ -19,8 +19,8 @@ action "release" {
   uses = "actions/zeit-now@master"
   secrets = [
     "ZEIT_TOKEN",
-    "GAPI_CLIENT_EMAIL",
     "GAPI_PRIVATE_KEY",
+    "GAPI_CLIENT_EMAIL",
   ]
-  args = "--no-clipboard --local-config=./site/now.json -e GAPI_CLIENT_EMAIL=$GAPI_CLIENT_EMAIL -e GAPI_PRIVATE_KEY=$GAPI_PRIVATE_KEY"
+  args = "--no-clipboard --local-config=./site/now.json -e GAPI_CLIENT_EMAIL=${GAPI_CLIENT_EMAIL} -e GAPI_PRIVATE_KEY=${GAPI_PRIVATE_KEY}"
 }
