@@ -16,7 +16,11 @@ action "master-branch-filter" {
 # Requires now.json in repository
 action "release" {
   needs = "master-branch-filter"
-  uses = "actions/zeit-now@master"
+  uses = "actions/zeit-now@master"  
+  env = {
+    GAPI_PRIVATE_KEY  = "$NOW_GAPI_PRIVATE_KEY"
+    GAPI_CLIENT_EMAIL = "$NOW_GAPI_CLIENT_EMAIL"
+  }
   secrets = [
     "ZEIT_TOKEN",
     "NOW_GAPI_PRIVATE_KEY",
