@@ -5,6 +5,10 @@
     "carlhauser",
     "todo.carlhauser.com"
   ],
+  "env": {
+    "GAPI_PRIVATE_KEY": "$GAPI_PRIVATE_KEY",
+    "GAPI_CLIENT_EMAIL": "$GAPI_CLIENT_EMAIL"
+  },
   "builds": [
     {
       "src": "next.config.js",
