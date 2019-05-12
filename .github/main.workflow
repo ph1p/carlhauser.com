@@ -22,7 +22,7 @@ action "release" {
     "GAPI_PRIVATE_KEY",
     "GAPI_CLIENT_EMAIL",
   ]
-  args = "--local-config=./now.json -e GAPI_PRIVATE_KEY -e GAPI_CLIENT_EMAIL"
+  args = " --target production -A ./now.json -e GAPI_PRIVATE_KEY -e GAPI_CLIENT_EMAIL"
 
   # Deploy, and write deployment to file
 
