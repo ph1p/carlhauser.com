@@ -25,7 +25,7 @@ class Home extends React.Component {
         const { data } = await sheets.spreadsheets.values.get({
           auth: jwt,
           range: 'To-do-Liste!A2:D100',
-          spreadsheetId: '19T1tRA_pN6zi11bDEAhFMpqKp1eqhqTWm7nxGLFyNTQ'
+          spreadsheetId: process.env.SPREADSHEET_ID
         });
 
         if (data) {
