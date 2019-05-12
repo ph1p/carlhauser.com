@@ -1,6 +1,10 @@
 {
   "version": 2,
   "name": "carlhauser",
+  "alias": [
+    "carlhauser",
+    "todo.carlhauser.com"
+  ],
   "builds": [
     {
       "src": "next.config.js",
