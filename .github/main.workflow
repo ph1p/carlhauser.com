@@ -16,9 +16,9 @@ action "master-branch-filter" {
 # Requires now.json in repository
 action "release" {
   needs = "master-branch-filter"
-  uses = "actions/zeit-now@master"  
+  uses = "actions/zeit-now@master"
   env = {
-    GAPI_PRIVATE_KEY  = "$NOW_GAPI_PRIVATE_KEY"
+    GAPI_PRIVATE_KEY = "$NOW_GAPI_PRIVATE_KEY"
     GAPI_CLIENT_EMAIL = "$NOW_GAPI_CLIENT_EMAIL"
   }
   secrets = [
@@ -26,4 +26,9 @@ action "release" {
     "NOW_GAPI_PRIVATE_KEY",
     "NOW_GAPI_CLIENT_EMAIL",
   ]
+  args = "-e GAPI_PRIVATE_KEY -e GAPI_CLIENT_EMAIL"
+
+  # Deploy, and write deployment to file
+
+  # Always create an alias using the SHA
 }
