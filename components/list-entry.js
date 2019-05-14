@@ -33,7 +33,7 @@ const Checkbox = props => {
 const ListEntry = props => (
   <div
     onClick={() => (props.link ? window.open(props.link, '_blank') : false)}
-    className={`item ${props.done && 'active'} ${props.link && 'link'}`}
+    className={`item ${props.done ? 'active' : ''} ${props.link ? 'link' : ''}`}
   >
     <div className="checkbox">
       <Checkbox checked={props.done} />
@@ -78,6 +78,7 @@ const ListEntry = props => (
 
       .item.active {
         background-color: #000;
+        border-color: rgba(255, 255, 255, 0.2);
         color: #fff;
       }
       .item.active h3 {
@@ -90,17 +91,6 @@ const ListEntry = props => (
         fill: #fff;
       }
 
-      .link {
-        text-transform: uppercase;
-        font-size: 1.6rem;
-        line-height: 1.6rem;
-      }
-      .link svg {
-        position: relative;
-        top: -0.2rem;
-        left: 0.5rem;
-        width: 1.1rem;
-      }
       .title {
         align-self: start;
         word-break: break-word;
@@ -113,9 +103,9 @@ const ListEntry = props => (
       }
       .title p {
         font-size: 2.3rem;
-        line-height: 3.8rem;
+        line-height: 3rem;
         color: #999;
-        margin: 0;
+        margin: 12px 0 0;
       }
       .count {
         grid-row: 1 / span 2;

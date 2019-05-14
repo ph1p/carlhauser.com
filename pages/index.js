@@ -98,7 +98,7 @@ class Home extends React.Component {
       <>
         <Head />
         <main>
-          <header>Secret thoughts</header>
+          <header>Secret Thoughts</header>
           <section className="content">
             {this.getEntries().map((e, index) => (
               <ListEntry {...e} key={'entry-' + index} count={index + 1} />
@@ -127,7 +127,6 @@ class Home extends React.Component {
             justify-content: center;
             padding: 1.4rem 2rem;
             font-size: 1.9rem;
-            text-transform: uppercase;
           }
 
           .content {

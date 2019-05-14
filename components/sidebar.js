@@ -124,21 +124,6 @@ class Home extends React.Component {
             border-color: #3b00ff;
           }
 
-          .content {
-            grid-area: content;
-            grid-column: 1;
-            overflow: auto;
-            margin: 0 0 0;
-          }
-          .content::-webkit-scrollbar {
-            width: 5px;
-          }
-          .content::-webkit-scrollbar-track {
-            display: none;
-          }
-          .content::-webkit-scrollbar-thumb {
-            background: #000;
-          }
           @media (max-width: 700px) {
             aside {
               grid-column: 1;
@@ -155,6 +140,7 @@ class Home extends React.Component {
               text-align: left;
               margin: 0 0 0 25px;
               font-size: 0.5em;
+              display: none;
             }
             aside .social {
               text-align: right;
