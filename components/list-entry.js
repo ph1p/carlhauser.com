@@ -40,7 +40,7 @@ const ListEntry = props => (
     </div>
     <div className="title">
       <h3>{props.title}</h3>
-      <p>{props.subtitle}</p>
+      {props.subtitle && <p>{props.subtitle}</p>}
     </div>
     <div
       className={`count ${props.image ? 'image' : ''}`}
@@ -129,12 +129,14 @@ const ListEntry = props => (
       }
 
       @media (max-width: 700px) {
+        .item {
+          padding: 25px;
+        }
         .count {
           grid-row: auto;
           grid-column: auto;
-          font-size: 6rem;
-          line-height: 5rem;
-          letter-spacing: -0.4rem;
+          font-size: 4rem;
+          line-height: 3.4rem;
           grid-row: 1;
           grid-column: 2;
           justify-self: start;
@@ -142,10 +144,18 @@ const ListEntry = props => (
         .title {
           grid-row: 2;
         }
+        .title h3 {
+          font-size: 2.3rem;
+          line-height: 2rem;
+        }
+        .title p {
+          font-size: 1.5rem;
+          line-height: 2rem;
+        }
         .item {
           font-size: 40%;
           grid-template-columns: 32px 1fr;
-          grid-gap: 20px;
+          grid-gap: 10px;
           grid-template-rows: auto;
         }
         .link svg {

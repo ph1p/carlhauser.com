@@ -25,10 +25,10 @@ class Home extends React.Component {
               done
             </div>
             <div
-              className={filter === 'not-done' ? 'active' : ''}
-              onClick={e => setFilter('not-done')}
+              className={filter === 'drafts' ? 'active' : ''}
+              onClick={e => setFilter('drafts')}
             >
-              in process
+              drafts
             </div>
           </nav>
 
@@ -99,10 +99,11 @@ class Home extends React.Component {
             margin-left: 1.8em;
           }
           .filter-nav div:hover {
-            color: #3b00ff;
+            color: #000;
+            text-decoration: underline;
           }
           .filter-nav div:hover::after {
-            border-color: #3b00ff;
+            border-color: #000;
           }
           .filter-nav div::after {
             content: '';
@@ -117,11 +118,12 @@ class Home extends React.Component {
             margin-left: 0;
           }
           .filter-nav div.active {
-            color: #3b00ff;
+            color: #000;
+            text-decoration: underline;
           }
           .filter-nav div.active::after {
-            background-color: #3b00ff;
-            border-color: #3b00ff;
+            background-color: #000;
+            border-color: #000;
           }
 
           @media (max-width: 700px) {
@@ -140,7 +142,6 @@ class Home extends React.Component {
               text-align: left;
               margin: 0 0 0 25px;
               font-size: 0.5em;
-              display: none;
             }
             aside .social {
               text-align: right;

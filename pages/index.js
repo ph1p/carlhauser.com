@@ -55,7 +55,7 @@ class Home extends React.Component {
 
     this.state = {
       filter: 'all',
-      contentHeight: 500
+      contentHeight: 1000
     };
   }
 
@@ -81,7 +81,7 @@ class Home extends React.Component {
       e =>
         filter === 'all' ||
         (filter === 'done' && e.done) ||
-        (filter === 'not-done' && !e.done)
+        (filter === 'drafts' && !e.done)
     );
   }
 
