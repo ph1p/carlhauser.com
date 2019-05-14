@@ -40,7 +40,7 @@ class Home extends React.Component {
                 done: entry[0] === 'TRUE',
                 date: entry[1],
                 link: entry[3],
-                image: entry[4],
+                image: entry[4]
               };
             });
 
@@ -117,6 +117,8 @@ class Home extends React.Component {
             grid-template-columns: 1fr 70px;
             font-size: 1.4rem;
             position: fixed;
+            width: 100%;
+            height: 100%;
           }
 
           header {
@@ -131,6 +133,8 @@ class Home extends React.Component {
           .content {
             grid-area: content;
             grid-column: 1;
+            position: relative;
+            z-index: 1;
             overflow-y: scroll;
             margin: 0 0 0;
             height: ${contentHeight
@@ -141,7 +145,7 @@ class Home extends React.Component {
           }
           .content::-webkit-scrollbar {
             width: 5px;
-            height: 5px;
+            height: 0;
           }
           .content::-webkit-scrollbar-track {
             display: none;
@@ -166,7 +170,7 @@ class Home extends React.Component {
             }
             .content::-webkit-scrollbar {
               width: 0;
-              height: 5px;
+              height: 0;
             }
           }
         `}</style>
