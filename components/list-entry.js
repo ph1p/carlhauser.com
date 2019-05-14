@@ -84,6 +84,7 @@ const ListEntry = props => (
         font-size: 3.8rem;
         line-height: 4.3rem;
         align-self: end;
+        word-break: break-word;
       }
       .count {
         grid-row: 1 / span 2;
@@ -96,6 +97,17 @@ const ListEntry = props => (
         font-weight: 500;
       }
       @media (max-width: 700px) {
+        .count {
+          grid-row: auto;
+          grid-column: auto;
+          font-size: 12rem;
+          letter-spacing: -0.4rem;
+        }
+        .item {
+          font-size: 40%;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+        }
         .link svg {
           top: 0;
         }

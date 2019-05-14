@@ -91,7 +91,6 @@ class Home extends React.Component {
               'content content sidebar';
             grid-template-rows: 55px 1fr;
             grid-template-columns: 1fr 70px;
-            height: 100vh;
             font-size: 1.4rem;
           }
 
@@ -103,11 +102,12 @@ class Home extends React.Component {
           }
 
           .content {
-            overflow-x: none;
             grid-area: content;
             grid-column: 1;
-            overflow: auto;
+            overflow-y: scroll;
             margin: 0 0 0;
+            height: calc(100vh - 55px);
+            scroll-behavior: smooth;
           }
           .content::-webkit-scrollbar {
             width: 5px;
@@ -129,8 +129,8 @@ class Home extends React.Component {
               grid-template-rows: 55px 1fr 70px;
               grid-template-columns: 1fr;
             }
-            header {
-              padding: 3rem 3rem;
+            .content {
+              height: calc(100vh - 125px);
             }
             .content::-webkit-scrollbar {
               width: 0;

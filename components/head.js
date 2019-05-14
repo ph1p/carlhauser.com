@@ -48,12 +48,7 @@ const Head = props => (
         font-size: 62.5%;
         font-weight: 400;
         background-color: #f3f3f3;
-      }
-      @media (max-width: 700px) {
-        body,
-        html {
-          font-size: 42.5%;
-        }
+        height: 100%;
       }
     `}</style>
   </>
