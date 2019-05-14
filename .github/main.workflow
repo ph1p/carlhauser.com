@@ -23,6 +23,13 @@ action "release" {
     "GAPI_CLIENT_EMAIL",
   ]
   args = " --target production -A ./now.json -e GAPI_PRIVATE_KEY -e GAPI_CLIENT_EMAIL"
+  env = {
+    NODE_ENV = "production"
+  }
+
+  # Deploy, and write deployment to file
+
+  # Always create an alias using the SHA
 
   # Deploy, and write deployment to file
 

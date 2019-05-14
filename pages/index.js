@@ -31,12 +31,18 @@ class Home extends React.Component {
         if (data) {
           const entries = data.values
             .filter(entry => entry[2])
-            .map(entry => ({
-              done: entry[0] === 'TRUE',
-              date: entry[1],
-              title: entry[2],
-              link: entry[3]
-            }));
+            .map(entry => {
+              const [title, subtitle] = entry[2].split('\n');
+
+              return {
+                title,
+                subtitle,
+                done: entry[0] === 'TRUE',
+                date: entry[1],
+                link: entry[3],
+                image: entry[4],
+              };
+            });
 
           resolve({ entries });
         }
@@ -48,8 +54,25 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      filter: 'all'
+      filter: 'all',
+      contentHeight: 500
     };
+  }
+
+  updateContentHeight = () => {
+    this.setState({
+      contentHeight: document.documentElement.clientHeight
+    });
+  };
+
+  componentDidMount() {
+    this.updateContentHeight();
+
+    window.addEventListener('resize', this.updateContentHeight);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateContentHeight);
   }
 
   getEntries() {
@@ -69,12 +92,13 @@ class Home extends React.Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, contentHeight } = this.state;
+
     return (
       <>
         <Head />
         <main>
-          <header>Ideas</header>
+          <header>Secret thoughts</header>
           <section className="content">
             {this.getEntries().map((e, index) => (
               <ListEntry {...e} key={'entry-' + index} count={index + 1} />
@@ -92,13 +116,16 @@ class Home extends React.Component {
             grid-template-rows: 55px 1fr;
             grid-template-columns: 1fr 70px;
             font-size: 1.4rem;
+            position: fixed;
           }
 
           header {
             grid-area: header;
             border-bottom: 1px solid #000;
             justify-content: center;
-            padding: 1.7rem 2rem;
+            padding: 1.4rem 2rem;
+            font-size: 1.9rem;
+            text-transform: uppercase;
           }
 
           .content {
@@ -106,8 +133,11 @@ class Home extends React.Component {
             grid-column: 1;
             overflow-y: scroll;
             margin: 0 0 0;
-            height: calc(100vh - 55px);
+            height: ${contentHeight
+              ? `calc(${contentHeight}px - 55px)`
+              : '100vh'};
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
           }
           .content::-webkit-scrollbar {
             width: 5px;
@@ -130,7 +160,9 @@ class Home extends React.Component {
               grid-template-columns: 1fr;
             }
             .content {
-              height: calc(100vh - 125px);
+              height: ${contentHeight
+                ? `calc(${contentHeight}px - 125px)`
+                : '100vh'};
             }
             .content::-webkit-scrollbar {
               width: 0;

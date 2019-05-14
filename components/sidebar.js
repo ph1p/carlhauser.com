@@ -13,6 +13,12 @@ class Home extends React.Component {
         <aside>
           <nav className="filter-nav">
             <div
+              className={filter === 'all' ? 'active' : ''}
+              onClick={e => setFilter('all')}
+            >
+              all
+            </div>
+            <div
               className={filter === 'done' ? 'active' : ''}
               onClick={e => setFilter('done')}
             >
@@ -77,18 +83,20 @@ class Home extends React.Component {
           .filter-nav {
             white-space: nowrap;
             transform: rotate(90deg);
-            transform-origin: 10px 35px;
+            transform-origin: 11px 37px;
             width: 69px;
+            font-size: 0.6em;
           }
           .filter-nav div {
             position: relative;
-            padding-left: 3.2rem;
-            font-size: 1.8rem;
-            line-height: 2rem;
+            padding-left: 2.4em;
+            font-size: 1.8em;
+            line-height: 1.7em;
             white-space: nowrap;
             display: inline-block;
             cursor: pointer;
             outline: none;
+            margin-left: 1.8em;
           }
           .filter-nav div:hover {
             color: #3b00ff;
@@ -101,12 +109,15 @@ class Home extends React.Component {
             position: absolute;
             left: 0;
             top: 0;
-            width: 1.8rem;
-            height: 1.8rem;
+            width: 1.5em;
+            height: 1.5em;
             border: 1px solid #000;
           }
-          .filter-nav div:last-child {
-            margin-left: 1.8rem;
+          .filter-nav div:first-child {
+            margin-left: 0;
+          }
+          .filter-nav div.active {
+            color: #3b00ff;
           }
           .filter-nav div.active::after {
             background-color: #3b00ff;
@@ -143,6 +154,7 @@ class Home extends React.Component {
               align-self: center;
               text-align: left;
               margin: 0 0 0 25px;
+              font-size: 0.5em;
             }
             aside .social {
               text-align: right;

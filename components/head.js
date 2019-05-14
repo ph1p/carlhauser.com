@@ -16,7 +16,7 @@ const Head = props => (
         content={props.description || defaultDescription}
       />
       <link rel="manifest" href="/static/manifest.json" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="viewport" content="width=device-width, user-scalable=no" />
       <link
         href="https://fonts.googleapis.com/css?family=Poppins:400,500,600"
         rel="stylesheet"

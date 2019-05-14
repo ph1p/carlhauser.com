@@ -1,9 +1,38 @@
 import React from 'react';
 
+const Checkbox = props => {
+  return (
+    <div className="checkbox">
+      <style jsx>{`
+        .checkbox {
+          width: 28px;
+          height: 28px;
+          border: 1px solid #${props.checked ? 'fff' : '999'};
+          border-radius: 4px;
+          position: relative;
+        }
+        .checkbox::after {
+          ${props.checked ? 'content: "";' : ''}
+          position: absolute;
+          height: 12px;
+          width: 6px;
+          top: 5px;
+          left: 10px;
+          transform: rotate(45deg);
+          border-width: 0 2px 2px 0;
+          border-color: #fff;
+          border-style: solid;
+        }
+      `}</style>
+    </div>
+  );
+};
+
 const ListEntry = props => (
   <>
-    <div className="item">
-      <div className="link">
+    <div className={`item ${props.done && 'active'}`}>
+      <Checkbox checked={props.done} />
+      {/* <div className="link">
         {props.link ? (
           <a target="_blank" href={props.link}>
             open on instagram
@@ -23,33 +52,28 @@ const ListEntry = props => (
         ) : (
           ''
         )}
+      </div> */}
+      <div className="title">
+        <h3>{props.title}</h3>
+        <p>{props.subtitle}</p>
       </div>
-      <div className="title">{props.title}</div>
-      <div className="count">
+      <div
+        className={`count ${props.image ? 'image' : ''}`}
+        style={props.image && { backgroundImage: 'url(' + props.image + ')' }}
+      >
         {props.count < 10 ? `0${props.count}` : props.count}
       </div>
     </div>
     <style jsx>{`
       .item {
         display: grid;
-        grid-template-columns: 1fr 200px;
+        position: relative;
+        grid-template-columns: 55px 1fr 200px;
         grid-template-rows: 1fr 1fr;
         border-bottom: 1px solid #000;
         position: relative;
-        padding: 20px 30px;
-        will-change: transform;
-        transition: background-color 0.4s ease-out, color 0.4s ease-out,
-          box-shadow 0.3s;
+        padding: 30px;
         box-sizing: border-box;
-      }
-      .item::after {
-        ${props.done ? 'content: "";' : ''}
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 10px;
-        height: 100%;
-        background-color: #3b00ff;
       }
       .item:last-child {
         border: 0;
@@ -58,15 +82,17 @@ const ListEntry = props => (
         text-decoration: none;
         color: #000;
       }
-      .item:hover {
+      .item.active {
         background-color: #000;
         color: #fff;
-        box-shadow: 0 0 143px rgba(0, 0, 0, 0.5);
       }
-      .item:hover a {
+      .item.active h3 {
+        text-decoration: line-through;
+      }
+      .item.active a {
         color: #fff;
       }
-      .item:hover svg path {
+      .item.active svg path {
         fill: #fff;
       }
       .link {
@@ -81,14 +107,24 @@ const ListEntry = props => (
         width: 1.1rem;
       }
       .title {
-        font-size: 3.8rem;
-        line-height: 4.3rem;
-        align-self: end;
+        align-self: start;
         word-break: break-word;
+        grid-column: 2;
+      }
+      .title h3 {
+        font-size: 3.8rem;
+        line-height: 3.8rem;
+        margin: 0;
+      }
+      .title p {
+        font-size: 2.3rem;
+        line-height: 3.8rem;
+        color: #999;
+        margin: 0;
       }
       .count {
         grid-row: 1 / span 2;
-        grid-column: 2;
+        grid-column: 3;
         align-self: center;
         justify-self: end;
         font-size: 15rem;
@@ -96,16 +132,22 @@ const ListEntry = props => (
         letter-spacing: -0.7rem;
         font-weight: 500;
       }
+      .count.image {
+        background-size: cover;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+      }
       @media (max-width: 700px) {
         .count {
           grid-row: auto;
           grid-column: auto;
-          font-size: 12rem;
+          font-size: 9rem;
           letter-spacing: -0.4rem;
         }
         .item {
           font-size: 40%;
-          grid-template-columns: 1fr;
+          grid-template-columns: 55px 1fr 120px;
           grid-template-rows: auto;
         }
         .link svg {
