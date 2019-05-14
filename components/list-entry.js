@@ -31,10 +31,9 @@ const Checkbox = props => {
 };
 
 const ListEntry = props => (
-  <a
-    target="_blank"
-    href={props.link ? props.link : '#'}
-    className={`item ${props.done && 'active'}`}
+  <div
+    onClick={() => (props.link ? window.open(props.link, '_blank') : false)}
+    className={`item ${props.done && 'active'} ${props.link && 'link'}`}
   >
     <div className="checkbox">
       <Checkbox checked={props.done} />
@@ -59,7 +58,6 @@ const ListEntry = props => (
         position: relative;
         padding: 30px;
         box-sizing: border-box;
-        cursor: pointer;
         color: #000;
         text-decoration: none !important;
       }
@@ -72,6 +70,10 @@ const ListEntry = props => (
       .item a {
         text-decoration: none;
         color: #000;
+      }
+
+      .item.link {
+        cursor: pointer;
       }
 
       .item.active {
@@ -161,7 +163,7 @@ const ListEntry = props => (
         }
       }
     `}</style>
-  </a>
+  </div>
 );
 
 export default ListEntry;
