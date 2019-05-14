@@ -18,10 +18,10 @@ const Checkbox = props => {
           position: absolute;
           height: 12px;
           width: 6px;
-          top: 5px;
+          top: 4px;
           left: 10px;
           transform: rotate(45deg);
-          border-width: 0 2px 2px 0;
+          border-width: 0 1px 1px 0;
           border-color: #fff;
           border-style: solid;
         }
@@ -123,8 +123,8 @@ const ListEntry = props => (
         align-self: center;
         justify-self: end;
         font-size: 15rem;
-        line-height: 12rem;
-        letter-spacing: -0.7rem;
+        line-height: 15rem;
+        letter-spacing: 0rem;
         font-weight: 500;
         background: none;
         background-repeat: no-repeat;

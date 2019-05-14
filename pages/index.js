@@ -139,7 +139,7 @@ class Home extends React.Component {
             margin: 0 0 0;
             height: ${contentHeight
               ? `calc(${contentHeight}px - 55px)`
-              : '100vh'};
+              : 'calc(100vh - 55px)'};
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
           }
@@ -166,7 +166,7 @@ class Home extends React.Component {
             .content {
               height: ${contentHeight
                 ? `calc(${contentHeight}px - 125px)`
-                : '100vh'};
+                : 'calc(100vh - 125px)'};
             }
             .content::-webkit-scrollbar {
               width: 0;
