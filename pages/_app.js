@@ -1,5 +1,4 @@
 import React from 'react';
-import getConfig from 'next/config';
 import { Provider } from 'react-redux';
 import App, { Container } from 'next/app';
 import withRedux from 'next-redux-wrapper';
@@ -10,16 +9,15 @@ import { updateEntries } from '../store/actions/entries';
 class CarlhauserApp extends App {
   static async getInitialProps({ Component, ctx }) {
     const { google } = require('googleapis');
-    const { serverRuntimeConfig } = getConfig();
 
     if (
-      serverRuntimeConfig.GAPI_CLIENT_EMAIL &&
-      serverRuntimeConfig.GAPI_PRIVATE_KEY
+      process.env.GAPI_CLIENT_EMAIL &&
+      process.env.GAPI_PRIVATE_KEY
     ) {
       const jwt = new google.auth.JWT(
-        serverRuntimeConfig.GAPI_CLIENT_EMAIL,
+        process.env.GAPI_CLIENT_EMAIL,
         null,
-        serverRuntimeConfig.GAPI_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        process.env.GAPI_PRIVATE_KEY.replace(/\\n/g, '\n'),
         ['https://www.googleapis.com/auth/spreadsheets.readonly']
       );
 
