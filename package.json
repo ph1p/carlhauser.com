@@ -1,0 +1,8 @@
+{
+  "name": "carlhauser-redirect",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "deploy-redirect": "now --local-config=./now.json --target production"
+  }
+}
