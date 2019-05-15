@@ -3,8 +3,6 @@ import React from 'react';
 const Twitter = props => (
   <svg
     {...props}
-    width="25"
-    height="22"
     viewBox="0 0 25 22"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -15,6 +13,10 @@ const Twitter = props => (
     />
 
     <style jsx>{`
+      svg {
+        width: 100%;
+        height: 100%;
+      }
       svg:hover path,
       svg:hover mask {
         fill: #3b00ff;

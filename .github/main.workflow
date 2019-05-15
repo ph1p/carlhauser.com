@@ -3,10 +3,6 @@ workflow "Deploy on Now" {
   resolves = ["release"]
 }
 
-# Deploy, and write deployment to file
-
-# Always create an alias using the SHA
-
 # Filter for master branch
 action "master-branch-filter" {
   uses = "actions/bin/filter@master"
@@ -26,12 +22,4 @@ action "release" {
   env = {
     NODE_ENV = "production"
   }
-
-  # Deploy, and write deployment to file
-
-  # Always create an alias using the SHA
-
-  # Deploy, and write deployment to file
-
-  # Always create an alias using the SHA
 }

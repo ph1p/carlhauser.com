@@ -6,48 +6,61 @@ import Sidebar from '../components/sidebar';
 import ListEntry from '../components/list-entry';
 import TwitterIcon from '../icons/twitter';
 import InstagramIcon from '../icons/instagram';
+import { connect } from 'react-redux';
 
 class Home extends React.Component {
-  static async getInitialProps() {
+  static async getInitialProps({ store }) {
     const { google } = require('googleapis');
 
-    const jwt = new google.auth.JWT(
-      process.env.GAPI_CLIENT_EMAIL,
-      null,
-      process.env.GAPI_PRIVATE_KEY.replace(/\\n/g, '\n'),
-      ['https://www.googleapis.com/auth/spreadsheets.readonly']
-    );
+    if (process.env.GAPI_CLIENT_EMAIL && process.env.GAPI_PRIVATE_KEY) {
+      const jwt = new google.auth.JWT(
+        process.env.GAPI_CLIENT_EMAIL,
+        null,
+        process.env.GAPI_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        ['https://www.googleapis.com/auth/spreadsheets.readonly']
+      );
 
-    return new Promise((resolve, reject) => {
-      jwt.authorize(async (err, response) => {
-        const sheets = google.sheets('v4');
+      return new Promise((resolve, reject) => {
+        jwt.authorize(async (err, response) => {
+          const sheets = google.sheets('v4');
 
-        const { data } = await sheets.spreadsheets.values.get({
-          auth: jwt,
-          range: 'To-do-Liste!A2:D100',
-          spreadsheetId: process.env.SPREADSHEET_ID
-        });
+          const { data } = await sheets.spreadsheets.values.get({
+            auth: jwt,
+            range: 'To-do-Liste!A2:E100',
+            spreadsheetId: process.env.SPREADSHEET_ID
+          });
 
-        if (data) {
-          const entries = data.values
-            .filter(entry => entry[2])
-            .map(entry => {
-              const [title, subtitle] = entry[2].split('\n');
+          if (data) {
+            const entries = data.values
+              .filter(entry => entry[2])
+              .map((entry, index) => {
+                const [title, subtitle] = entry[2].split('\n');
 
-              return {
-                title,
-                subtitle,
-                done: entry[0] === 'TRUE',
-                date: entry[1],
-                link: entry[3],
-                image: entry[4]
-              };
+                return {
+                  title,
+                  subtitle,
+                  id: index,
+                  done: entry[0] === 'TRUE',
+                  date: entry[1],
+                  link: entry[3],
+                  image: entry[4]
+                };
+              });
+
+            store.dispatch({
+              type: 'UPDATE_ENTRIES',
+              entries
             });
 
-          resolve({ entries });
-        }
+            resolve({ entries });
+          }
+        });
       });
-    });
+    } else {
+      return {
+        entries: store.getState().entries.data
+      };
+    }
   }
 
   constructor(props) {
@@ -96,12 +109,15 @@ class Home extends React.Component {
 
     return (
       <>
-        <Head />
         <main>
-          <header>Secret Thoughts</header>
+          <header>
+            <Link prefetch href="/">
+              <a>Secret Thoughts</a>
+            </Link>
+          </header>
           <section className="content">
-            {this.getEntries().map((e, index) => (
-              <ListEntry {...e} key={'entry-' + index} count={index + 1} />
+            {this.getEntries().map(e => (
+              <ListEntry {...e} key={'entry-' + e.id} />
             ))}
           </section>
           <Sidebar setFilter={this.setFilter} filter={filter} />
@@ -127,6 +143,10 @@ class Home extends React.Component {
             justify-content: center;
             padding: 1.4rem 2rem;
             font-size: 1.9rem;
+          }
+          header a {
+            color: #000;
+            text-decoration: none;
           }
 
           .content {
@@ -178,4 +198,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default connect()(Home);

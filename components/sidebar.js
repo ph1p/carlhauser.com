@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch';
 import Head from '../components/head';
 import TwitterIcon from '../icons/twitter';
 import InstagramIcon from '../icons/instagram';
+import DribbbleIcon from '../icons/dribbble';
 
 class Home extends React.Component {
   render() {
@@ -43,6 +44,20 @@ class Home extends React.Component {
                 <InstagramIcon />
               </a>
             </div>
+            <div className="icon">
+              <a target="_blank" href="https://dribbble.com/carlhauser">
+                <DribbbleIcon />
+              </a>
+            </div>
+            <div className="icon about">
+              <Link prefetch href="/about">
+                <a>
+                  <div className="about-icon">
+                    <img src="/static/profile.png" alt="" />
+                  </div>
+                </a>
+              </Link>
+            </div>
           </div>
         </aside>
 
@@ -77,7 +92,18 @@ class Home extends React.Component {
           }
           aside .social .icon {
             display: block;
-            margin-bottom: 20px;
+            width: 25px;
+            height: 25px;
+            margin: 0 auto 25px;
+          }
+
+          aside .social .about-icon {
+            border-radius: 100%;
+            overflow: hidden;
+          }
+          aside .social .about-icon img {
+            width: 100%;
+            display: block;
           }
 
           .filter-nav {
@@ -129,27 +155,24 @@ class Home extends React.Component {
           @media (max-width: 700px) {
             aside {
               grid-column: 1;
-              grid-template-columns: 1fr 100px;
+              grid-template-columns: 1fr;
               grid-template-rows: none;
               border-width: 1px 0 0 0;
               border-color: #000;
               border-style: solid;
             }
             .filter-nav {
-              transform: rotate(0);
-              width: auto;
-              align-self: center;
-              text-align: left;
-              margin: 0 0 0 25px;
-              font-size: 0.5em;
+              display: none;
             }
             aside .social {
               text-align: right;
               align-self: center;
+              display: flex;
+              justify-content: space-evenly;
             }
             aside .social .icon {
-              display: inline-block;
-              margin: 0 25px 0 0;
+              display: block;
+              margin: 0;
             }
           }
         `}</style>

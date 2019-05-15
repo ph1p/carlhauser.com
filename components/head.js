@@ -39,6 +39,9 @@ const Head = props => (
       <meta property="og:image:height" content="630" />
     </NextHead>
     <style jsx global>{`
+      a {
+        display: block;
+      }
       * {
         box-sizing: border-box;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

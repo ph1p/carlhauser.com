@@ -3,7 +3,7 @@
   "name": "Carlhauser (TODO)",
   "start_url": "/",
   "background_color": "#f3f3f3",
-  "display": "standalone",
+  "display": "minimal-ui",
   "scope": "/",
   "theme_color": "#f3f3f3"
 }

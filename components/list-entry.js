@@ -14,15 +14,15 @@ const Checkbox = props => {
           position: relative;
         }
         div::after {
-          ${props.checked ? 'content: "";' : ''}
+          content: '';
           position: absolute;
-          height: 12px;
+          height: ${props.checked ? 12 : 17}px;
           width: 6px;
-          top: 4px;
-          left: 10px;
+          top: ${props.checked ? 4 : 2}px;
+          left: ${props.checked ? 10 : 8}px;
           transform: rotate(45deg);
-          border-width: 0 1px 1px 0;
-          border-color: #fff;
+          border-width: 0 1px ${props.checked ? 1 : 0 }px 0;
+          border-color: ${props.checked ? '#fff' : '#999'};
           border-style: solid;
         }
       `}</style>
@@ -46,7 +46,7 @@ const ListEntry = props => (
       className={`count ${props.image ? 'image' : ''}`}
       style={props.image && { backgroundImage: 'url(' + props.image + ')' }}
     >
-      {props.count < 10 ? `0${props.count}` : props.count}
+      {props.id < 10 ? `0${props.id}` : props.id}
     </div>
 
     <style jsx>{`

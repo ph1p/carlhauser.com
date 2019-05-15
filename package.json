@@ -11,7 +11,10 @@
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.1.0",
     "next-offline": "^4.0.0",
+    "next-redux-wrapper": "^3.0.0-alpha.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1"
   }
 }
