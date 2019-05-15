@@ -24,6 +24,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.updateContentHeight();
+    window.addEventListener('load', this.updateContentHeight);
     window.addEventListener('resize', this.updateContentHeight);
   }
 
@@ -79,9 +80,7 @@ class Home extends React.Component {
             grid-template-rows: 55px 1fr;
             grid-template-columns: 1fr;
             font-size: 1.4rem;
-            position: fixed;
-            width: 100%;
-            height: 100%;
+            min-height: 100%;
           }
 
           header {
@@ -103,9 +102,7 @@ class Home extends React.Component {
             z-index: 1;
             overflow-y: scroll;
             margin: 0 0 0;
-            height: ${contentHeight
-              ? `calc(${contentHeight}px - 55px)`
-              : 'calc(100vh - 55px)'};
+            height: calc(${clientHeight}px - 55px);
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
           }
@@ -138,9 +135,7 @@ class Home extends React.Component {
               grid-template-columns: 1fr;
             }
             .content {
-              height: ${contentHeight
-                ? `calc(${contentHeight}px - 110px)`
-                : 'calc(100vh - 110px)'};
+              height: calc(${clientHeight}px - 110px);
             }
             .content::-webkit-scrollbar {
               width: 0;
@@ -156,7 +151,7 @@ class Home extends React.Component {
 export default connect(
   state => ({
     entries: state.entries.data,
-    clientHeight: state.settings.clientHeight,
+    clientHeight: state.settings.clientHeight
   }),
   dispatch => ({
     setClientHeight: data => dispatch({ type: 'SET_CLIENT_HEIGHT', data })

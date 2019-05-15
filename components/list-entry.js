@@ -159,6 +159,9 @@ const ListEntry = props => (
           grid-gap: 10px;
           grid-template-rows: auto;
         }
+        .item:hover .count.image {
+          color: inherit;
+        }
         .link svg {
           top: 0;
         }

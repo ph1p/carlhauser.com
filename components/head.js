@@ -2,7 +2,8 @@ import React from 'react';
 import NextHead from 'next/head';
 import { string } from 'prop-types';
 
-const defaultDescription = '';
+const defaultDescription =
+  'This page shows thoughts and ideas I had during waiting, taking the tram and while I was working on stuff. When an idea is visualized, I will mark it as done and place a link to the specific instagram page.';
 const defaultOGURL = '';
 const defaultOGImage = '';
 
@@ -10,13 +11,14 @@ const Head = props => (
   <>
     <NextHead>
       <meta charSet="UTF-8" />
+      <meta name="theme-color" content="#f3f3f3" />
       <title>{props.title || ''}</title>
       <meta
         name="description"
         content={props.description || defaultDescription}
       />
       <link rel="manifest" href="/static/manifest.json" />
-      <meta name="viewport" content="width=device-width, user-scalable=no" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link
         href="https://fonts.googleapis.com/css?family=Poppins:400,500,600"
         rel="stylesheet"
@@ -47,8 +49,10 @@ const Head = props => (
         box-sizing: border-box;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       }
-      body,
-      html {
+      html,
+      body {
+        overflow-y: auto;
+        min-height: 100%;
         font-family: 'Poppins';
         margin: 0;
         font-size: 62.5%;
@@ -56,7 +60,6 @@ const Head = props => (
         background-color: #f3f3f3;
         height: 100%;
       }
-
     `}</style>
   </>
 );

@@ -51,7 +51,7 @@ class CarlhauserApp extends App {
     const { Component, pageProps, store } = this.props;
     return (
       <Container>
-        <Head />
+        <Head title="carlhauser - Secret Thoughts" />
         <Provider store={store}>
           <Component {...pageProps} />
         </Provider>

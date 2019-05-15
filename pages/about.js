@@ -61,9 +61,7 @@ class Home extends React.Component {
             grid-template-rows: 55px 1fr;
             grid-template-columns: 1fr;
             font-size: 1.4rem;
-            position: fixed;
-            width: 100%;
-            height: 100%;
+            min-height: 100%;
           }
 
           header {
