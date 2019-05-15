@@ -168,11 +168,13 @@ class Home extends React.Component {
               text-align: right;
               align-self: center;
               display: flex;
-              justify-content: space-evenly;
+              justify-content: space-around;
+              flex-direction: row-reverse;
             }
             aside .social .icon {
               display: block;
               margin: 0;
+              align-self: center;
             }
           }
         `}</style>

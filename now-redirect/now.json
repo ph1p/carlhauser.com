@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "alias": ["www.carlhauser.com"],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "status": 301,
+      "headers": {
+        "Location": "https://carlhauser.com/$1"
+      }
+    }
+  ]
+}

@@ -3,6 +3,10 @@ const webpack = require('webpack');
 
 const nextConfig = {
   target: 'serverless',
+  serverRuntimeConfig: {
+    GAPI_CLIENT_EMAIL: process.env.GAPI_CLIENT_EMAIL,
+    GAPI_PRIVATE_KEY: process.env.GAPI_PRIVATE_KEY
+  },
   webpack: config => {
     config.node = {
       fs: 'empty',

@@ -19,11 +19,24 @@ class Home extends React.Component {
           </header>
           <section className="content">
             <div className="text">
-              My name is Sebastian, also know as carlhauser. I’m a Designer from
-              Germany. What you see on this page are thoughts that I write down
-              and eventually visualize, the order doesn't matter. When something
-              is finished, it is crossed out here on the list and can be found
-              on Instagram. Don’t forget design is work and not magic.
+              <p>
+                My name is Sebastian, also known as carlhauser. I’m a{' '}
+                <u>designer</u> from Germany.
+              </p>
+              <p>
+                This page shows thoughts and ideas I had during waiting, taking
+                the tram and while I was working on stuff. When an idea is
+                visualized, I will mark it as done and place a link to the
+                specific instagram page. The simple reason for this is, I'm a
+                big fan of sharing ideas.
+              </p>
+              <p>
+                It's bullshit to not present your process and thoughts, because
+                of someone could steal it. I'm working and thinking, especially
+                about design, every day, even if I'm not creating a cool
+                Interface or a fancy motion design. So why shouldn't I tell you
+                about it.
+              </p>
             </div>
             <div className="close">
               <Link href="/">
@@ -72,7 +85,7 @@ class Home extends React.Component {
               'contact contact title title';
             grid-template-columns: 1fr 1fr 1fr 1fr;
             grid-area: content;
-            overflow-y: scroll;
+            overflow: auto;
             margin: 0;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
@@ -83,14 +96,17 @@ class Home extends React.Component {
           }
 
           .content a {
+            display: inline;
             text-decoration: underline;
             color: #fff;
           }
-
           .content .text {
             grid-area: text;
             font-size: 4rem;
             line-height: 5rem;
+          }
+          .content .text p {
+            margin: 0;
           }
           .content .close {
             grid-area: close;
@@ -140,15 +156,18 @@ class Home extends React.Component {
           @media (max-width: 700px) {
             .content {
               grid-template-areas:
-                'close close close close'
                 'title title title title'
                 'text text text text'
-                'contact contact contact contact';
-              padding: 40px;
+                'contact contact contact close';
+              padding: 4rem 2rem;
+              grid-gap: 10px;
             }
             .content .close {
               font-size: 1.8rem;
               line-height: 2rem;
+              padding: 0 0 2rem;
+              justify-content: end;
+              align-self: end;
             }
             .content .title {
               font-size: 10rem;
@@ -156,13 +175,20 @@ class Home extends React.Component {
               text-align: left;
             }
             .content .text {
-              font-size: 2.6rem;
-              line-height: 4rem;
+              font-size: 2.2rem;
+              line-height: 3rem;
+            }
+            .content .text p {
+              margin: 1em 0;
             }
             .content .contact {
-              font-size: 2rem;
+              font-size: 2.2rem;
               line-height: 3rem;
-              padding: 0 0 40px;
+              padding: 0 0 2rem;
+            }
+            .content .contact p {
+              margin: 10px 0 0 0;
+              line-height: 1.4rem;
             }
           }
         `}</style>

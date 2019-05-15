@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy-redirect": "now --local-config=./now-redirect/now.json --target production"
   },
   "dependencies": {
     "googleapis": "^40.0.0",

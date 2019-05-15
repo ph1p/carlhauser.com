@@ -9,6 +9,7 @@ import InstagramIcon from '../icons/instagram';
 import { connect } from 'react-redux';
 
 class Home extends React.Component {
+<<<<<<< HEAD
   static async getInitialProps({ store }) {
     const { google } = require('googleapis');
 
@@ -63,6 +64,8 @@ class Home extends React.Component {
     }
   }
 
+=======
+>>>>>>> df30f8b... feat(loading): embed entry loading into app filefix stylesupdate storeplace env vars in config file
   constructor(props) {
     super(props);
 
@@ -90,12 +93,15 @@ class Home extends React.Component {
 
   getEntries() {
     const { filter } = this.state;
-    return this.props.entries.filter(
-      e =>
-        filter === 'all' ||
-        (filter === 'done' && e.done) ||
-        (filter === 'drafts' && !e.done)
-    );
+
+    return this.props.entries.data.length
+      ? this.props.entries.data.filter(
+          e =>
+            filter === 'all' ||
+            (filter === 'done' && e.done) ||
+            (filter === 'drafts' && !e.done)
+        )
+      : [];
   }
 
   setFilter = option => {
@@ -130,7 +136,7 @@ class Home extends React.Component {
               'header header header'
               'content content sidebar';
             grid-template-rows: 55px 1fr;
-            grid-template-columns: 1fr 70px;
+            grid-template-columns: 1fr;
             font-size: 1.4rem;
             position: fixed;
             width: 100%;
@@ -179,13 +185,13 @@ class Home extends React.Component {
                 'header'
                 'content'
                 'sidebar';
-              grid-template-rows: 55px 1fr 70px;
+              grid-template-rows: 55px 1fr 55px;
               grid-template-columns: 1fr;
             }
             .content {
               height: ${contentHeight
-                ? `calc(${contentHeight}px - 125px)`
-                : 'calc(100vh - 125px)'};
+                ? `calc(${contentHeight}px - 110px)`
+                : 'calc(100vh - 110px)'};
             }
             .content::-webkit-scrollbar {
               width: 0;
@@ -198,4 +204,6 @@ class Home extends React.Component {
   }
 }
 
-export default connect()(Home);
+export default connect(state => ({
+  entries: state.entries
+}))(Home);

@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "carlhauser",
-  "alias": ["www.carlhauser.com", "carlhauser.com"],
+  "alias": ["carlhauser.com"],
   "routes": [
     {
       "src": "^/service-worker.js$",
