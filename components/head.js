@@ -21,8 +21,8 @@ const Head = props => (
         href="https://fonts.googleapis.com/css?family=Poppins:400,500,600"
         rel="stylesheet"
       />
-      <link rel="icon" sizes="192x192" href="/static/touch-icon.png" />
-      <link rel="apple-touch-icon" href="/static/touch-icon.png" />
+      <link rel="icon" sizes="192x192" href="/static/icon-192.png" />
+      <link rel="apple-touch-icon" href="/static/icons/icon-512.png" />
       <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
       <link rel="icon" href="/static/favicon.ico" />
       <meta property="og:url" content={props.url || defaultOGURL} />
@@ -49,13 +49,14 @@ const Head = props => (
       }
       body,
       html {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins';
         margin: 0;
         font-size: 62.5%;
         font-weight: 400;
         background-color: #f3f3f3;
         height: 100%;
       }
+
     `}</style>
   </>
 );

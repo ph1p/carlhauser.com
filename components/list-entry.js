@@ -140,6 +140,7 @@ const ListEntry = props => (
           grid-row: 1;
           grid-column: 2;
           justify-self: start;
+          background-image: none !important;
         }
         .title {
           grid-row: 2;

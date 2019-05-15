@@ -115,8 +115,8 @@ class Home extends React.Component {
           }
           .content .contact {
             grid-area: contact;
-            font-size: 3rem;
-            line-height: 4rem;
+            font-size: 4rem;
+            line-height: 5rem;
             align-self: end;
           }
           .content .contact p {
@@ -128,10 +128,11 @@ class Home extends React.Component {
           .content .title {
             grid-area: title;
             grid-columns: 1fr;
-            font-size: 18rem;
-            line-height: 15rem;
+            font-size: 26rem;
+            line-height: 22rem;
             text-align: right;
             align-self: end;
+            transition: all 0.3s;
           }
 
           .content::-webkit-scrollbar {
@@ -145,10 +146,19 @@ class Home extends React.Component {
             background: #fff;
           }
 
+          @media (min-width: 1024px) and (max-width: 1400px) {
+            .content .title {
+              transform: rotate(-90deg);
+              position: absolute;
+              right: -18rem;
+              bottom: 26rem;
+            }
+          }
+
           @media (max-width: 1024px) {
             .content .title {
-              font-size: 12rem;
-              line-height: 8rem;
+              font-size: 15rem;
+              line-height: 15rem;
               text-align: right;
             }
           }
@@ -173,6 +183,7 @@ class Home extends React.Component {
               font-size: 10rem;
               line-height: 8rem;
               text-align: left;
+              align-self: center;
             }
             .content .text {
               font-size: 2.2rem;

@@ -14,19 +14,16 @@ class Home extends React.Component {
 
     this.state = {
       filter: 'all',
-      contentHeight: 1000
+      contentHeight: 0
     };
   }
 
   updateContentHeight = () => {
-    this.setState({
-      contentHeight: document.documentElement.clientHeight
-    });
+    this.props.setClientHeight(document.documentElement.clientHeight);
   };
 
   componentDidMount() {
     this.updateContentHeight();
-
     window.addEventListener('resize', this.updateContentHeight);
   }
 
@@ -37,8 +34,8 @@ class Home extends React.Component {
   getEntries() {
     const { filter } = this.state;
 
-    return this.props.entries.data.length
-      ? this.props.entries.data.filter(
+    return this.props.entries.length
+      ? this.props.entries.filter(
           e =>
             filter === 'all' ||
             (filter === 'done' && e.done) ||
@@ -55,12 +52,13 @@ class Home extends React.Component {
 
   render() {
     const { filter, contentHeight } = this.state;
+    const { clientHeight } = this.props;
 
     return (
       <>
-        <main>
+        <main className={`main ${clientHeight > 0 ? 'loaded' : ''}`}>
           <header>
-            <Link prefetch href="/">
+            <Link href="/">
               <a>Secret Thoughts</a>
             </Link>
           </header>
@@ -122,6 +120,14 @@ class Home extends React.Component {
             background: #000;
           }
 
+          .main {
+            opacity: 0;
+            transition: opacity 1s;
+          }
+          .main.loaded {
+            opacity: 1;
+          }
+
           @media (max-width: 700px) {
             main {
               grid-template-areas:
@@ -147,6 +153,12 @@ class Home extends React.Component {
   }
 }
 
-export default connect(state => ({
-  entries: state.entries
-}))(Home);
+export default connect(
+  state => ({
+    entries: state.entries.data,
+    clientHeight: state.settings.clientHeight,
+  }),
+  dispatch => ({
+    setClientHeight: data => dispatch({ type: 'SET_CLIENT_HEIGHT', data })
+  })
+)(Home);

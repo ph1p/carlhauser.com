@@ -54,6 +54,10 @@ const nextConfig = {
         }
       },
       {
+        urlPattern: /.*(?:googleapis|gstatic)\.com/,
+        handler: 'StaleWhileRevalidate'
+      },
+      {
         urlPattern: /^https:\/\/fonts\.gstatic\.com/,
         handler: 'CacheFirst',
         options: {
