@@ -47,17 +47,6 @@ const nextConfig = {
         }
       },
       {
-        urlPattern: /^https:\/\/fonts\.googleapis\.com/,
-        handler: 'StaleWhileRevalidate',
-        options: {
-          cacheName: 'google-fonts-stylesheets'
-        }
-      },
-      {
-        urlPattern: /.*(?:googleapis|gstatic)\.com/,
-        handler: 'StaleWhileRevalidate'
-      },
-      {
         urlPattern: /^https:\/\/fonts\.gstatic\.com/,
         handler: 'CacheFirst',
         options: {

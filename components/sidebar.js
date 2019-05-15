@@ -50,7 +50,7 @@ class Home extends React.Component {
               </a>
             </div>
             <div className="icon about">
-              <Link prefetch href="/about">
+              <Link href="/about">
                 <a>
                   <div className="about-icon">
                     <img src="/static/profile.png" alt="" />
