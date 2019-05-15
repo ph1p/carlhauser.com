@@ -61,7 +61,9 @@ class Home extends React.Component {
             grid-template-rows: 55px 1fr;
             grid-template-columns: 1fr;
             font-size: 1.4rem;
-            min-height: 100%;
+            position: fixed;
+            height: 100%;
+            width: 100%;
           }
 
           header {
@@ -91,6 +93,7 @@ class Home extends React.Component {
             color: #fff;
             padding: 60px;
             grid-gap: 30px;
+            position: relative;
           }
 
           .content a {
@@ -127,7 +130,7 @@ class Home extends React.Component {
             grid-area: title;
             grid-columns: 1fr;
             font-size: 26rem;
-            line-height: 22rem;
+            line-height: 26rem;
             text-align: right;
             align-self: end;
             transition: all 0.3s;
@@ -148,8 +151,8 @@ class Home extends React.Component {
             .content .title {
               transform: rotate(-90deg);
               position: absolute;
-              right: -18rem;
-              bottom: 26rem;
+              right: -23rem;
+              bottom: 23rem;
             }
           }
 

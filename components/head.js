@@ -49,16 +49,19 @@ const Head = props => (
         box-sizing: border-box;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       }
+      #__next {
+        height: 100%;
+      }
       html,
       body {
-        overflow-y: auto;
-        min-height: 100%;
         font-family: 'Poppins';
-        margin: 0;
         font-size: 62.5%;
         font-weight: 400;
-        background-color: #f3f3f3;
         height: 100%;
+        min-height: 100%;
+        overflow: hidden;
+        margin: 0;
+        background-color: #f3f3f3;
       }
     `}</style>
   </>
