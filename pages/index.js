@@ -13,23 +13,8 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      filter: 'all',
-      contentHeight: 0
+      filter: 'all'
     };
-  }
-
-  updateContentHeight = () => {
-    this.props.setClientHeight(document.documentElement.clientHeight);
-  };
-
-  componentDidMount() {
-    this.updateContentHeight();
-    window.addEventListener('load', this.updateContentHeight);
-    window.addEventListener('resize', this.updateContentHeight);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateContentHeight);
   }
 
   getEntries() {
@@ -51,13 +36,17 @@ class Home extends React.Component {
     }));
   };
 
+  componentDidMount() {
+    this.refs.main.classList.add('loaded');
+  }
+
   render() {
-    const { filter, contentHeight } = this.state;
+    const { filter } = this.state;
     const { clientHeight } = this.props;
 
     return (
       <>
-        <main className={`main ${clientHeight > 0 ? 'loaded' : ''}`}>
+        <main ref="main" className="main">
           <header>
             <Link href="/">
               <a>Secret Thoughts</a>
@@ -80,9 +69,7 @@ class Home extends React.Component {
             grid-template-rows: 55px 1fr;
             grid-template-columns: 1fr;
             font-size: 1.4rem;
-            position: fixed;
             height: 100%;
-            width: 100%;
           }
 
           header {
@@ -104,7 +91,6 @@ class Home extends React.Component {
             z-index: 1;
             overflow-y: scroll;
             margin: 0 0 0;
-            height: calc(${clientHeight}px - 55px);
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
           }
@@ -128,6 +114,18 @@ class Home extends React.Component {
           }
 
           @media (max-width: 700px) {
+            header {
+              position: fixed;
+              width: 100%;
+              background-color: #f3f3f3;
+            }
+            aside {
+              position: fixed;
+              bottom: 0;
+              width: 100%;
+              height: 55px;
+              background-color: #f3f3f3;
+            }
             main {
               grid-template-areas:
                 'header'
@@ -137,7 +135,7 @@ class Home extends React.Component {
               grid-template-columns: 1fr;
             }
             .content {
-              height: calc(${clientHeight}px - 110px);
+              height: auto;
             }
             .content::-webkit-scrollbar {
               width: 0;
@@ -150,12 +148,6 @@ class Home extends React.Component {
   }
 }
 
-export default connect(
-  state => ({
-    entries: state.entries.data,
-    clientHeight: state.settings.clientHeight
-  }),
-  dispatch => ({
-    setClientHeight: data => dispatch({ type: 'SET_CLIENT_HEIGHT', data })
-  })
-)(Home);
+export default connect(state => ({
+  entries: state.entries.data
+}))(Home);

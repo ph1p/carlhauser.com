@@ -3,7 +3,7 @@
   "name": "Secret Thoughts",
   "start_url": "/",
   "background_color": "#f3f3f3",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "theme_color": "#f3f3f3",
   "icons": [

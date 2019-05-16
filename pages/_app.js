@@ -10,10 +10,7 @@ class CarlhauserApp extends App {
   static async getInitialProps({ Component, ctx }) {
     const { google } = require('googleapis');
 
-    if (
-      process.env.GAPI_CLIENT_EMAIL &&
-      process.env.GAPI_PRIVATE_KEY
-    ) {
+    if (process.env.GAPI_CLIENT_EMAIL && process.env.GAPI_PRIVATE_KEY) {
       const jwt = new google.auth.JWT(
         process.env.GAPI_CLIENT_EMAIL,
         null,
@@ -21,8 +18,9 @@ class CarlhauserApp extends App {
         ['https://www.googleapis.com/auth/spreadsheets.readonly']
       );
 
-      return new Promise((resolve, reject) => {
+      return new Promise(async (resolve, reject) => {
         jwt.authorize(async (err, response) => {
+          console.log(err);
           const sheets = google.sheets('v4');
 
           const { data } = await sheets.spreadsheets.values.get({
@@ -34,16 +32,24 @@ class CarlhauserApp extends App {
           if (data) {
             ctx.store.dispatch(updateEntries(data));
           }
+        });
 
-          resolve({
-            pageProps: {
-              ...(Component.getInitialProps
-                ? await Component.getInitialProps(ctx)
-                : {})
-            }
-          });
+        resolve({
+          pageProps: {
+            ...(Component.getInitialProps
+              ? await Component.getInitialProps(ctx)
+              : {})
+          }
         });
       });
+    } else {
+      return {
+        pageProps: {
+          ...(Component.getInitialProps
+            ? await Component.getInitialProps(ctx)
+            : {})
+        }
+      };
     }
   }
 

@@ -61,9 +61,7 @@ class Home extends React.Component {
             grid-template-rows: 55px 1fr;
             grid-template-columns: 1fr;
             font-size: 1.4rem;
-            position: fixed;
             height: 100%;
-            width: 100%;
           }
 
           header {
@@ -152,7 +150,10 @@ class Home extends React.Component {
               transform: rotate(-90deg);
               position: absolute;
               right: -23rem;
-              bottom: 23rem;
+              bottom: 27rem;
+            }
+            .contact {
+              padding-bottom: 60px;
             }
           }
 
@@ -165,20 +166,26 @@ class Home extends React.Component {
           }
 
           @media (max-width: 700px) {
+            header {
+              position: fixed;
+              width: 100%;
+              background-color: #f3f3f3;
+            }
             .content {
               grid-template-areas:
-                'title title title title'
+                'title title title close'
                 'text text text text'
-                'contact contact contact close';
+                'contact contact contact contact';
               padding: 4rem 2rem;
               grid-gap: 10px;
+              position: inherit;
             }
             .content .close {
               font-size: 1.8rem;
               line-height: 2rem;
               padding: 0 0 2rem;
-              justify-content: end;
-              align-self: end;
+              justify-content: start;
+              align-self: start;
             }
             .content .title {
               font-size: 10rem;
