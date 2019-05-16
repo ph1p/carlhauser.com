@@ -2,34 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import App, { Container } from 'next/app';
 import withRedux from 'next-redux-wrapper';
-import Head from '../components/head';
 import initStore from '../store';
 import { updateEntries } from '../store/actions/entries';
-import { createGlobalStyle } from 'styled-components';
-
-const GlobalStyle = createGlobalStyle`
-  a {
-    display: block;
-  }
-  * {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  }
-  #__next {
-    height: 100%;
-  }
-  html,
-  body {
-    font-family: 'Poppins';
-    font-size: 62.5%;
-    font-weight: 400;
-    height: 100%;
-    min-height: 100%;
-    overflow: hidden;
-    margin: 0;
-    background-color: #f3f3f3;
-  }
-`;
 
 class CarlhauserApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -45,7 +19,7 @@ class CarlhauserApp extends App {
 
       return new Promise(async (resolve, reject) => {
         jwt.authorize(async (err, response) => {
-          console.log(err);
+          if (err) return;
           const sheets = google.sheets('v4');
 
           const { data } = await sheets.spreadsheets.values.get({
@@ -57,18 +31,17 @@ class CarlhauserApp extends App {
           if (data) {
             ctx.store.dispatch(updateEntries(data));
           }
-        });
 
-        resolve({
-          pageProps: {
-            ...(Component.getInitialProps
-              ? await Component.getInitialProps(ctx)
-              : {})
-          }
+          resolve({
+            pageProps: {
+              ...(Component.getInitialProps
+                ? await Component.getInitialProps(ctx)
+                : {})
+            }
+          });
         });
       });
     } else {
-      ctx.store.dispatch(updateEntries());
       return {
         pageProps: {
           ...(Component.getInitialProps
@@ -82,15 +55,11 @@ class CarlhauserApp extends App {
   render() {
     const { Component, pageProps, store } = this.props;
     return (
-      <>
-        <GlobalStyle />
-        <Container>
-          <Head title="carlhauser - Secret Thoughts" />
-          <Provider store={store}>
-            <Component {...pageProps} />
-          </Provider>
-        </Container>
-      </>
+      <Container>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </Container>
     );
   }
 }

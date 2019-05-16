@@ -1,7 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
-import Head from '../components/head';
 import TwitterIcon from '../icons/twitter';
 import InstagramIcon from '../icons/instagram';
 import DribbbleIcon from '../icons/dribbble';

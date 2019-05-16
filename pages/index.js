@@ -1,7 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
-import Head from '../components/head';
 import Sidebar from '../components/sidebar';
 import ListEntry from '../components/list-entry';
 import TwitterIcon from '../icons/twitter';

@@ -103,6 +103,11 @@ const Item = styled.div`
   }
 
   @media (max-width: 700px) {
+    padding: 25px;
+    font-size: 40%;
+    grid-template-columns: 32px 1fr;
+    grid-gap: 10px;
+    grid-template-rows: auto;
     .count {
       grid-row: auto;
       grid-column: auto;
@@ -125,18 +130,11 @@ const Item = styled.div`
         line-height: 2rem;
       }
     }
-    .item {
-      padding: 25px;
-      font-size: 40%;
-      grid-template-columns: 32px 1fr;
-      grid-gap: 10px;
-      grid-template-rows: auto;
-      &:hover .count.image {
-        color: inherit;
-      }
-      .link svg {
-        top: 0;
-      }
+    &:hover .count.image {
+      color: inherit;
+    }
+    .link svg {
+      top: 0;
     }
   }
 `;
