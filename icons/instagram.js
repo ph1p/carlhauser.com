@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Instagram = props => (
   <svg
@@ -19,17 +20,16 @@ const Instagram = props => (
       d="M18.406 7.03405C19.2013 7.03405 19.846 6.38934 19.846 5.59405C19.846 4.79876 19.2013 4.15405 18.406 4.15405C17.6107 4.15405 16.966 4.79876 16.966 5.59405C16.966 6.38934 17.6107 7.03405 18.406 7.03405Z"
       fill="black"
     />
-    <style jsx>{`
-      svg {
-        width: 100%;
-        height: 100%;
-      }
-      svg:hover path,
-      svg:hover mask {
-        fill: #3b00ff;
-      }
-    `}</style>
   </svg>
 );
 
-export default Instagram;
+export default styled(Instagram)`
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+  svg:hover path,
+  svg:hover mask {
+    fill: #3b00ff;
+  }
+`;
