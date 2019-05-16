@@ -2,7 +2,8 @@
   "name": "carlhauser",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "NODE_ENV=development next",
+    "now-dev": "NODE_ENV=development now dev",
     "build": "next build",
     "start": "next start"
   },
