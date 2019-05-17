@@ -4,7 +4,8 @@
   "alias": ["carlhauser.com"],
   "env": {
     "GAPI_CLIENT_EMAIL": "@carlhauser-gapi-client-email",
-    "GAPI_PRIVATE_KEY": "@carlhauser-gapi-private-key"
+    "GAPI_PRIVATE_KEY": "@carlhauser-gapi-private-key",
+    "SPREADSHEET_ID": "@carlhauser-spreadsheet-id"
   },
   "routes": [
     {
