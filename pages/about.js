@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Header from '../components/layout/header';
 import Sidebar from '../components/sidebar';
 import ListEntry from '../components/list-entry';
 import TwitterIcon from '../icons/twitter';
@@ -15,22 +16,9 @@ const Main = styled.main`
   grid-template-columns: 1fr;
   font-size: 1.4rem;
   height: 100%;
-`;
-
-const Header = styled.header`
-  grid-area: header;
-  border-bottom: 1px solid #000;
-  justify-content: center;
-  padding: 1.4rem 2rem;
-  font-size: 1.9rem;
-  a {
-    color: #000;
-    text-decoration: none;
-  }
   @media (max-width: 700px) {
-    position: fixed;
-    width: 100%;
-    background-color: #f3f3f3;
+    padding: 55px 0 0;
+    display: block;
   }
 `;
 
@@ -50,6 +38,7 @@ const Content = styled.section`
   padding: 60px;
   grid-gap: 30px;
   position: relative;
+  height: 100%;
 
   a {
     display: inline;
@@ -104,7 +93,7 @@ const Content = styled.section`
 
   @media (min-width: 1024px) and (max-width: 1400px) {
     .contact {
-      padding-bottom: 60px;
+      padding: 0 0 60px;
     }
     .title {
       transform: rotate(-90deg);
@@ -123,8 +112,9 @@ const Content = styled.section`
   }
 
   @media (max-width: 700px) {
+    overflow: inherit;
     grid-template-areas:
-      'title title title close'
+      'title title title title'
       'text text text text'
       'contact contact contact contact';
     padding: 4rem 2rem;
@@ -137,12 +127,21 @@ const Content = styled.section`
       padding: 0 0 2rem;
       justify-content: start;
       align-self: start;
+      position: fixed;
+      z-index: 2;
+      top: 18px;
+      right: 25px;
+
+      a {
+        color: #000;
+      }
     }
     .title {
       font-size: 10rem;
       line-height: 8rem;
       text-align: left;
       align-self: center;
+      transition: none;
     }
     .text {
       font-size: 2.2rem;
@@ -168,11 +167,7 @@ class Home extends React.Component {
     return (
       <>
         <Main>
-          <Header>
-            <Link href="/">
-              <a>Secret Thoughts</a>
-            </Link>
-          </Header>
+          <Header />
           <Content>
             <div className="text">
               <p>

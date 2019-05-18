@@ -24,7 +24,6 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="UTF-8" />
           <meta name="theme-color" content="#f3f3f3" />
-          <title>{this.props.title || ''}</title>
           <meta
             name="description"
             content={this.props.description || defaultDescription}
@@ -40,7 +39,7 @@ export default class MyDocument extends Document {
           />
           <link href="/static/global.css" rel="stylesheet" />
           {this.props.styleTags}
-          <link rel="icon" sizes="192x192" href="/static/icon-192.png" />
+          <link rel="icon" sizes="192x192" href="/static/icons/icon-192.png" />
           <link rel="apple-touch-icon" href="/static/icons/icon-512.png" />
           <link
             rel="mask-icon"

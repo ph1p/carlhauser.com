@@ -20,31 +20,19 @@ const nextConfig = {
     swDest: 'static/service-worker.js',
     runtimeCaching: [
       {
-        urlPattern: /[.](png|jpg|ico|css)/,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'assets-cache',
-          cacheableResponse: {
-            statuses: [0, 200]
-          }
-        }
-      },
-      {
-        urlPattern: /^http.*/,
-        handler: 'NetworkFirst',
-        options: {
-          cacheName: 'http-cache'
-        }
-      },
-      {
         urlPattern: /^https?.*/,
-        handler: 'NetworkFirst',
+        handler: 'networkFirst',
         options: {
-          cacheName: 'offlineCache',
+          cacheName: 'https-calls',
+          networkTimeoutSeconds: 15,
           expiration: {
-            maxEntries: 200
-          }
-        }
+            maxEntries: 150,
+            maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
+          },
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
+        },
       },
       {
         urlPattern: /^https:\/\/fonts\.gstatic\.com/,

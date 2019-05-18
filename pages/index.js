@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Header from '../components/layout/header';
 import Sidebar from '../components/sidebar';
 import ListEntry from '../components/list-entry';
 import TwitterIcon from '../icons/twitter';
@@ -24,31 +25,8 @@ const Main = styled.main`
   }
 
   @media (max-width: 700px) {
-    grid-template-areas:
-      'header'
-      'content'
-      'sidebar';
-    grid-template-rows: 55px 1fr 55px;
-    grid-template-columns: 1fr;
-  }
-`;
-
-const Header = styled.header`
-  grid-area: header;
-  border-bottom: 1px solid #000;
-  justify-content: center;
-  padding: 1.4rem 2rem;
-  font-size: 1.9rem;
-  a {
-    color: #000;
-    text-decoration: none;
-  }
-  @media (max-width: 700px) {
-    header {
-      position: fixed;
-      width: 100%;
-      background-color: #f3f3f3;
-    }
+    padding: 55px 0 0;
+    display: block;
   }
 `;
 
@@ -61,20 +39,22 @@ const Content = styled.section`
   margin: 0 0 0;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  background-color: #f3f3f3;
 
   &::-webkit-scrollbar {
     width: 5px;
     height: 0;
   }
   &::-webkit-scrollbar-track {
-    display: none;
+    background-color: #f3f3f3;
   }
   &::-webkit-scrollbar-thumb {
     background: #000;
   }
 
   @media (max-width: 700px) {
-    height: auto;
+    padding-bottom: 55px;
+    overflow-y: auto;
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
@@ -120,11 +100,7 @@ class Home extends React.Component {
     return (
       <>
         <Main ref="main" className="main">
-          <Header>
-            <Link href="/">
-              <a>Secret Thoughts</a>
-            </Link>
-          </Header>
+          <Header />
           <Content>
             {this.getEntries().map(e => (
               <ListEntry {...e} key={'entry-' + e.id} />

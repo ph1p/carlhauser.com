@@ -15,5 +15,24 @@ body {
   font-weight: 400;
   height: 100%;
   margin: 0;
-  background-color: #f3f3f3;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+  height: 0;
+}
+body::-webkit-scrollbar-track {
+  display: none;
+}
+body::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+
+@media (max-width: 700px) {
+  body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 }

@@ -12,19 +12,20 @@ const Aside = styled.aside`
   display: grid;
   grid-template-rows: 1fr 1fr;
   text-align: center;
+  background-color: #f3f3f3;
 
   @media (max-width: 700px) {
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 55px;
-    background-color: #f3f3f3;
     grid-column: 1;
     grid-template-columns: 1fr;
     grid-template-rows: none;
     border-width: 1px 0 0 0;
     border-color: #000;
     border-style: solid;
+    z-index: 1;
   }
 `;
 
