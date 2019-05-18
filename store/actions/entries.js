@@ -11,7 +11,7 @@ export function updateEntries(entries) {
         subtitle,
         id: index + 1,
         done: entry[0] === 'TRUE',
-        date: entry[1],
+        isNew: entry[1] === 'TRUE',
         link: entry[3],
         image: entry[4]
       };

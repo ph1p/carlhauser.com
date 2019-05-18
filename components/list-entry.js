@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { media } from '../utils/styles';
 
 const Checkbox = styled.div`
   width: 28px;
@@ -33,6 +34,23 @@ const Item = styled.div`
   box-sizing: border-box;
   color: #000;
   text-decoration: none !important;
+
+  .new-flag {
+    background-color: #3211ff;
+    text-transform: uppercase;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    color: #fff;
+    padding: 3px 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    ${media.phone`
+    top: 67px;
+    bottom: inherit;
+    `}
+  }
 
   .checkbox {
     margin: 3px 0 0 0;
@@ -144,6 +162,7 @@ const ListEntry = props => (
     onClick={() => (props.link ? window.open(props.link, '_blank') : false)}
     className={`item ${props.done ? 'active' : ''} ${props.link ? 'link' : ''}`}
   >
+    {props.isNew ? <div className="new-flag">new</div> : ''}
     <div className="checkbox">
       <Checkbox checked={props.done} />
     </div>
