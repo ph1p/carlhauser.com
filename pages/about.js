@@ -6,6 +6,13 @@ import ListEntry from '../components/list-entry';
 import TwitterIcon from '../icons/twitter';
 import InstagramIcon from '../icons/instagram';
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #000;
+  }
+`;
 
 const Main = styled.main`
   display: grid;
@@ -166,6 +173,7 @@ class Home extends React.Component {
   render() {
     return (
       <>
+        <GlobalStyle />
         <Main>
           <Header />
           <Content>

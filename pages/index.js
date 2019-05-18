@@ -7,6 +7,13 @@ import TwitterIcon from '../icons/twitter';
 import InstagramIcon from '../icons/instagram';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #f3f3f3;
+  }
+`;
 
 const Main = styled.main`
   display: grid;
@@ -99,6 +106,7 @@ class Home extends React.Component {
 
     return (
       <>
+        <GlobalStyle />
         <Main ref="main" className="main">
           <Header />
           <Content>
