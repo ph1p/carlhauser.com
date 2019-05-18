@@ -5,6 +5,7 @@ import Sidebar from '../components/sidebar';
 import ListEntry from '../components/list-entry';
 import TwitterIcon from '../icons/twitter';
 import InstagramIcon from '../icons/instagram';
+import { media } from '../utils/styles';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
@@ -24,17 +25,22 @@ const Main = styled.main`
   grid-template-columns: 1fr;
   font-size: 1.4rem;
   height: 100%;
+  width: 100%;
   opacity: 0;
   transition: opacity 1s;
+  overflow: hidden;
+  position: fixed;
 
   &.loaded {
     opacity: 1;
   }
 
-  @media (max-width: 700px) {
+  ${media.phone`
+    overflow: inherit;
     padding: 55px 0 0;
     display: block;
-  }
+    position: relative;
+  `}
 `;
 
 const Content = styled.section`
@@ -44,9 +50,8 @@ const Content = styled.section`
   z-index: 1;
   overflow-y: scroll;
   margin: 0 0 0;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
   background-color: #f3f3f3;
+  -webkit-overflow-scrolling: touch;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -59,14 +64,14 @@ const Content = styled.section`
     background: #000;
   }
 
-  @media (max-width: 700px) {
+  ${media.phone`
     padding-bottom: 55px;
     overflow-y: auto;
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
     }
-  }
+  `}
 `;
 class Home extends React.Component {
   constructor(props) {

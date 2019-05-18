@@ -5,28 +5,26 @@ import Sidebar from '../components/sidebar';
 import ListEntry from '../components/list-entry';
 import TwitterIcon from '../icons/twitter';
 import InstagramIcon from '../icons/instagram';
+import { media } from '../utils/styles';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
+    position:relative;
     background-color: #000;
+  }
+  html {
+  -webkit-overflow-scrolling: touch;overflow-y: scroll;
   }
 `;
 
 const Main = styled.main`
-  display: grid;
-  grid-template-areas:
-    'header header'
-    'content content';
-  grid-template-rows: 55px 1fr;
-  grid-template-columns: 1fr;
   font-size: 1.4rem;
-  height: 100%;
-  @media (max-width: 700px) {
-    padding: 55px 0 0;
+  padding: 55px 0 0;
+  ${media.phone`
     display: block;
-  }
+  `}
 `;
 
 const Content = styled.section`
@@ -38,8 +36,6 @@ const Content = styled.section`
   grid-area: content;
   overflow: auto;
   margin: 0;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
   background-color: #000;
   color: #fff;
   padding: 60px;
@@ -79,7 +75,6 @@ const Content = styled.section`
   }
   .title {
     grid-area: title;
-    grid-columns: 1fr;
     font-size: 26rem;
     line-height: 26rem;
     text-align: right;
@@ -98,7 +93,7 @@ const Content = styled.section`
     background: #fff;
   }
 
-  @media (min-width: 1024px) and (max-width: 1400px) {
+  @media (min-width: 769px) and (max-width: 1200px) {
     .contact {
       padding: 0 0 60px;
     }
@@ -110,15 +105,27 @@ const Content = styled.section`
     }
   }
 
-  @media (max-width: 1024px) {
+  ${media.tablet`
+    overflow: inherit;
+    grid-template-areas:
+      'title title title close'
+      'text text text text'
+      'contact contact contact contact';
+
     .title {
       font-size: 15rem;
       line-height: 15rem;
-      text-align: right;
+      text-align: left;
+      align-self: center;
+      transition: none;
     }
-  }
 
-  @media (max-width: 700px) {
+    .close {
+      font-size: 2rem;
+    }
+  `}
+
+  ${media.phone`
     overflow: inherit;
     grid-template-areas:
       'title title title title'
@@ -166,7 +173,7 @@ const Content = styled.section`
         line-height: 1.4rem;
       }
     }
-  }
+  `};
 `;
 
 class Home extends React.Component {
