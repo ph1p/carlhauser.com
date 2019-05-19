@@ -1,24 +1,33 @@
 import React from 'react';
 import Link from 'next/link';
+import { media } from '../utils/styles';
 import TwitterIcon from '../icons/twitter';
 import InstagramIcon from '../icons/instagram';
 import DribbbleIcon from '../icons/dribbble';
 import styled from 'styled-components';
 
 const Aside = styled.aside`
-  grid-area: sidebar;
   border-left: 1px solid #000;
   grid-column: 2;
   display: grid;
   grid-template-rows: 1fr 1fr;
   text-align: center;
   background-color: #f3f3f3;
+  position: ${props => (props.scrollDown ? 'fixed' : 'absolute')};
+  padding: 55px 0 0 0;
+  width: 70px;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
 
-  @media (max-width: 700px) {
+  ${media.phone`
     position: fixed;
+    top: inherit;
     bottom: 0;
     width: 100%;
     height: 55px;
+    padding: 0;
     grid-column: 1;
     grid-template-columns: 1fr;
     grid-template-rows: none;
@@ -26,7 +35,10 @@ const Aside = styled.aside`
     border-color: #000;
     border-style: solid;
     z-index: 1;
-  }
+  `}
+
+  /*@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2),
+  @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3),*/
   @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
     padding: 0 0 25px;
     height: 85px;
@@ -77,9 +89,9 @@ const FilterNav = styled.nav`
       }
     }
   }
-  @media (max-width: 700px) {
+  ${media.phone`
     display: none;
-  }
+  `}
 `;
 const Social = styled.div`
   display: inline-block;
@@ -98,7 +110,7 @@ const Social = styled.div`
       display: block;
     }
   }
-  @media (max-width: 700px) {
+  ${media.phone`
     text-align: right;
     align-self: center;
     display: flex;
@@ -109,14 +121,37 @@ const Social = styled.div`
       margin: 0;
       align-self: center;
     }
-  }
+  `}
 `;
 
 class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      y: 0
+    };
+  }
+
+  handleScroll = () => {
+    this.setState({
+      y: window.pageYOffset
+    });
+  };
+
+  componentDidMount() {
+    this.handleScroll();
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
   render() {
     const { setFilter, filter } = this.props;
     return (
-      <Aside>
+      <Aside scrollDown={this.state.y > 0}>
         <FilterNav>
           <div
             className={filter === 'all' ? 'active' : ''}

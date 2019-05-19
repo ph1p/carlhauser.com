@@ -9,15 +9,20 @@ const Header = styled.header`
   padding: 1.4rem 2rem;
   font-size: 1.9rem;
   background-color: #f3f3f3;
-  position: ${props => props.scrollDown ? 'fixed' : 'absolute'};
+  position: ${props => (props.scrollDown ? 'fixed' : 'absolute')};
   top: 0;
   left: 0;
   width: 100%;
   height: 55px;
   z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   a {
     color: #000;
     text-decoration: none;
+    &:nth-child(2) {
+      text-align: right;
+    }
   }
 `;
 
@@ -37,6 +42,7 @@ export default class Head extends React.PureComponent {
   };
 
   componentDidMount() {
+    this.handleScroll();
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -50,6 +56,7 @@ export default class Head extends React.PureComponent {
         <Link href="/">
           <a>{this.props.title || 'Secret Thoughts'}</a>
         </Link>
+        {this.props.children}
       </Header>
     );
   }

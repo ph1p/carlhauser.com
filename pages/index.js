@@ -17,19 +17,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Main = styled.main`
-  display: grid;
-  grid-template-areas:
-    'header header header'
-    'content content sidebar';
-  grid-template-rows: 55px 1fr;
-  grid-template-columns: 1fr;
   font-size: 1.4rem;
   height: 100%;
   width: 100%;
   opacity: 0;
   transition: opacity 1s;
-  overflow: hidden;
-  position: fixed;
+  padding: 55px 75px 0 0;
+
+
+  @media (hover: none) and (pointer: coarse) {
+    padding: 55px 70px 0 0;
+  }
 
   &.loaded {
     opacity: 1;
@@ -37,44 +35,21 @@ const Main = styled.main`
 
   ${media.phone`
     overflow: inherit;
-    padding: 55px 0 0;
     display: block;
     position: relative;
+    padding: 55px 0 56px 0;
   `}
 `;
 
 const Content = styled.section`
-  grid-area: content;
-  grid-column: 1;
   position: relative;
   z-index: 1;
-  overflow-y: scroll;
   margin: 0 0 0;
   background-color: #f3f3f3;
-  -webkit-overflow-scrolling: touch;
-
-  &::-webkit-scrollbar {
-    width: 5px;
-    height: 0;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: #f3f3f3;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #000;
-  }
-
-  ${media.phone`
-    padding-bottom: 55px;
-    overflow-y: auto;
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
-  `}
+  width: 100%;
 
   @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-    padding-bottom: 85px;
+    padding-bottom: 29px;
   }
 `;
 class Home extends React.Component {
@@ -118,7 +93,7 @@ class Home extends React.Component {
         <GlobalStyle />
         <Main ref="main" className="main">
           <Header />
-          <Content>
+          <Content ref="content">
             {this.getEntries().map(e => (
               <ListEntry {...e} key={'entry-' + e.id} />
             ))}

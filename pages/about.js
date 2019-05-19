@@ -13,15 +13,37 @@ const GlobalStyle = createGlobalStyle`
   body {
     position:relative;
     background-color: #000;
+    &::-webkit-scrollbar {
+      background-color: #fff;
+      border-left: 1px solid #fff;
+      ${media.phone`
+        width: 0;
+        height: 0;
+      `}
+      ${media.tablet`
+        width: 0;
+        height: 0;
+      `}
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #fff;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #000;
+    }
   }
-  html {
-  -webkit-overflow-scrolling: touch;overflow-y: scroll;
+  #__next {
+    height: auto;
+    ${media.tablet`
+      height: auto;
+    `}
   }
 `;
 
 const Main = styled.main`
   font-size: 1.4rem;
   padding: 55px 0 0;
+  height: 100%;
   ${media.phone`
     display: block;
   `}
@@ -30,7 +52,7 @@ const Main = styled.main`
 const Content = styled.section`
   display: grid;
   grid-template-areas:
-    'text text text close'
+    'text text text text'
     'contact contact title title';
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-area: content;
@@ -94,21 +116,23 @@ const Content = styled.section`
   }
 
   @media (min-width: 769px) and (max-width: 1200px) {
-    .contact {
-      padding: 0 0 60px;
-    }
+    grid-template-areas:
+      'text text text title'
+      'contact contact contact title';
     .title {
       transform: rotate(-90deg);
       position: absolute;
-      right: -23rem;
-      bottom: 27rem;
+      font-size: 22rem;
+      line-height: 17rem;
+      right: -19rem;
+      bottom: 22rem;
     }
   }
 
   ${media.tablet`
     overflow: inherit;
     grid-template-areas:
-      'title title title close'
+      'title title title title'
       'text text text text'
       'contact contact contact contact';
 
@@ -118,10 +142,6 @@ const Content = styled.section`
       text-align: left;
       align-self: center;
       transition: none;
-    }
-
-    .close {
-      font-size: 2rem;
     }
   `}
 
@@ -135,21 +155,6 @@ const Content = styled.section`
     grid-gap: 10px;
     position: inherit;
 
-    .close {
-      font-size: 1.8rem;
-      line-height: 2rem;
-      padding: 0 0 2rem;
-      justify-content: start;
-      align-self: start;
-      position: fixed;
-      z-index: 2;
-      top: 18px;
-      right: 25px;
-
-      a {
-        color: #000;
-      }
-    }
     .title {
       font-size: 10rem;
       line-height: 8rem;
@@ -182,7 +187,11 @@ class Home extends React.Component {
       <>
         <GlobalStyle />
         <Main>
-          <Header />
+          <Header>
+            <Link href="/">
+              <a>close</a>
+            </Link>
+          </Header>
           <Content>
             <div className="text">
               <p>
@@ -203,11 +212,6 @@ class Home extends React.Component {
                 Interface or a fancy motion design. So why shouldn't I tell you
                 about it.
               </p>
-            </div>
-            <div className="close">
-              <Link href="/">
-                <a>close</a>
-              </Link>
             </div>
             <div className="contact">
               If you got any questions, just{' '}

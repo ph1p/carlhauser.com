@@ -120,7 +120,7 @@ const Item = styled.div`
     background-position: 0;
   }
 
-  @media (max-width: 700px) {
+  ${media.phone`
     padding: 25px;
     font-size: 40%;
     grid-template-columns: 32px 1fr;
@@ -154,7 +154,7 @@ const Item = styled.div`
     .link svg {
       top: 0;
     }
-  }
+  `}
 `;
 
 const ListEntry = props => (

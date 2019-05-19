@@ -41,12 +41,7 @@ export default class MyDocument extends Document {
           {this.props.styleTags}
           <link rel="icon" sizes="192x192" href="/static/icons/icon-192.png" />
           <link rel="apple-touch-icon" href="/static/icons/icon-512.png" />
-          <link
-            rel="mask-icon"
-            href="/static/favicon-mask.svg"
-            color="#49B882"
-          />
-          <link rel="icon" href="/static/favicon.ico" />
+          <link rel="icon" href="/static/icons/icon-192.png" />
           <meta property="og:url" content={this.props.url || defaultOGURL} />
           <meta property="og:title" content={this.props.title || ''} />
           <meta
