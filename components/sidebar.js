@@ -27,6 +27,10 @@ const Aside = styled.aside`
     border-style: solid;
     z-index: 1;
   }
+  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    padding: 0 0 25px;
+    height: 85px;
+  }
 `;
 
 const FilterNav = styled.nav`

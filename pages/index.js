@@ -72,6 +72,10 @@ const Content = styled.section`
       height: 0;
     }
   `}
+
+  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    padding-bottom: 85px;
+  }
 `;
 class Home extends React.Component {
   constructor(props) {
