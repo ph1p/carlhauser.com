@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   #__next {
-    height: auto;
+    height: inherit;
     ${media.tablet`
       height: auto;
     `}
