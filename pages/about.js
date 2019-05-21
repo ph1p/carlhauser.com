@@ -32,10 +32,14 @@ const GlobalStyle = createGlobalStyle`
       background: #000;
     }
   }
+
   #__next {
     height: inherit;
-    ${media.tablet`
-      height: auto;
+  }
+
+  #__next {
+    ${media.desktop`
+      height:  100%;
     `}
   }
 `;
@@ -44,8 +48,9 @@ const Main = styled.main`
   font-size: 1.4rem;
   padding: 55px 0 0;
   height: 100%;
-  ${media.phone`
+  ${media.desktop`
     display: block;
+    height:  auto;
   `}
 `;
 
@@ -56,7 +61,6 @@ const Content = styled.section`
     'contact contact title title';
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-area: content;
-  overflow: auto;
   margin: 0;
   background-color: #000;
   color: #fff;
@@ -64,7 +68,9 @@ const Content = styled.section`
   grid-gap: 30px;
   position: relative;
   height: 100%;
-
+  ${media.desktop`
+    height:  auto;
+  `}
   a {
     display: inline;
     text-decoration: underline;
@@ -97,8 +103,8 @@ const Content = styled.section`
   }
   .title {
     grid-area: title;
-    font-size: 26rem;
-    line-height: 26rem;
+    font-size: 16vw;
+    line-height: 16vw;
     text-align: right;
     align-self: end;
     transition: all 0.3s;
@@ -215,7 +221,9 @@ class Home extends React.Component {
             </div>
             <div className="contact">
               If you got any questions, just{' '}
-              <a aria-label="Send E-Mail" href="mailto:me@carlhauser.com">drop me a line</a>
+              <a aria-label="Send E-Mail" href="mailto:me@carlhauser.com">
+                drop me a line
+              </a>
               <p>Created with love from my brother</p>
             </div>
             <div className="title">Hello.</div>
