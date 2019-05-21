@@ -189,7 +189,7 @@ class Home extends React.Component {
         <Main>
           <Header>
             <Link href="/">
-              <a>close</a>
+              <a aria-label="Close about page">close</a>
             </Link>
           </Header>
           <Content>
@@ -215,7 +215,7 @@ class Home extends React.Component {
             </div>
             <div className="contact">
               If you got any questions, just{' '}
-              <a href="mailto:me@carlhauser.com">drop me a line</a>
+              <a aria-label="Send E-Mail" href="mailto:me@carlhauser.com">drop me a line</a>
               <p>Created with love from my brother</p>
             </div>
             <div className="title">Hello.</div>

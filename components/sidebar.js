@@ -175,23 +175,23 @@ class Sidebar extends React.Component {
 
         <Social>
           <div className="icon">
-            <a target="_blank" href="https://twitter.com/carlhauser_">
+            <a target="_blank" aria-label="Open Twitter Profile" href="https://twitter.com/carlhauser_">
               <TwitterIcon />
             </a>
           </div>
           <div className="icon">
-            <a target="_blank" href="https://instagram.com/carlhauser">
+            <a target="_blank" aria-label="Open Instagram Profile" href="https://instagram.com/carlhauser">
               <InstagramIcon />
             </a>
           </div>
           <div className="icon">
-            <a target="_blank" href="https://dribbble.com/carlhauser">
+            <a target="_blank" aria-label="Open Dribbble Profile" href="https://dribbble.com/carlhauser">
               <DribbbleIcon />
             </a>
           </div>
           <div className="icon about">
             <Link href="/about">
-              <a>
+              <a aria-label="Open about page">
                 <div className="about-icon">
                   <img src="/static/profile.png" alt="" />
                 </div>
