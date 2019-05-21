@@ -28,6 +28,9 @@ const Main = styled.main`
   @media (hover: none) and (pointer: coarse) {
     padding: 55px 70px 0 0;
   }
+  @supports (-moz-appearance:none) {
+    padding: 55px 70px 0 0;
+  }
 
   &.loaded {
     opacity: 1;
