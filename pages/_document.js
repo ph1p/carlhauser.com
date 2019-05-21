@@ -20,7 +20,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <meta charSet="UTF-8" />
           <meta name="theme-color" content="#f3f3f3" />
