@@ -43,6 +43,7 @@ export default class MyDocument extends Document {
           <link rel="apple-touch-icon" href="/static/icons/icon-512.png" />
           <link rel="icon" href="/static/icons/icon-192.png" />
           <meta property="og:url" content={this.props.url || defaultOGURL} />
+          <meta name="p:domain_verify" content="6733d801d63fac551d9547af5415726f"/>
           <meta property="og:title" content={this.props.title || ''} />
           <meta
             property="og:description"
