@@ -22,15 +22,7 @@ const Main = styled.main`
   width: 100%;
   opacity: 0;
   transition: opacity 1s;
-  padding: 55px 75px 0 0;
-
-
-  @media (hover: none) and (pointer: coarse) {
-    padding: 55px 70px 0 0;
-  }
-  @supports (-moz-appearance:none) {
-    padding: 55px 70px 0 0;
-  }
+  padding: 55px 70px 0 0;
 
   &.loaded {
     opacity: 1;
