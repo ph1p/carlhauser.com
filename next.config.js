@@ -26,8 +26,9 @@ const nextConfig = {
           cacheName: 'https-calls',
           networkTimeoutSeconds: 15,
           expiration: {
-            maxEntries: 150,
+            maxEntries: 30,
             maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
+            purgeOnQuotaError: true
           },
           cacheableResponse: {
             statuses: [0, 200],
@@ -43,7 +44,8 @@ const nextConfig = {
             statuses: [0, 200]
           },
           expiration: {
-            maxAgeSeconds: 60 * 60 * 24 * 365
+            maxAgeSeconds: 60 * 60 * 24 * 365,
+            purgeOnQuotaError: true
           }
         }
       }
