@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import Head from 'next/head';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import withRedux from 'next-redux-wrapper';
 import initStore from '../store';
 import { updateEntries } from '../store/actions/entries';
@@ -58,14 +58,14 @@ class CarlhauserApp extends App {
   render() {
     const { Component, pageProps, store } = this.props;
     return (
-      <Container>
+      <>
         <Head>
           <title>{this.props.title || 'carlhauser - Secret Thoughts'}</title>
         </Head>
         <Provider store={store}>
           <Component {...pageProps} />
         </Provider>
-      </Container>
+      </>
     );
   }
 }

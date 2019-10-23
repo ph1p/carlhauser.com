@@ -26,6 +26,40 @@ const Header = styled.header`
   }
 `;
 
+const BmcButton = styled.a`
+  line-height: 30px;
+  height: 32px;
+  text-decoration: none;
+  color: #ffffff !important;
+  background-color: #000000;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  padding: 1px 9px;
+  font-size: 17px;
+  width: 140px;
+  letter-spacing: 0.6px;
+  box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5);
+  margin: -4px 0 0 0;
+  font-family: 'Cookie', cursive;
+  box-sizing: border-box;
+  transition: 0.3s all linear;
+  display:inline-block;
+  img {
+    width: 21px;
+    margin-bottom: 1px;
+    box-shadow: none;
+    border: none;
+    vertical-align: middle;
+  }
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5);
+    opacity: 0.85;
+    color: #ffffff !important;
+  }
+`;
 export default class Head extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -53,6 +87,18 @@ export default class Head extends React.PureComponent {
   render() {
     return (
       <Header scrollDown={this.state.y > 0}>
+        <BmcButton
+          className="bmc-button"
+          target="_blank"
+          href="https://www.buymeacoffee.com/mjHJCSyoD"
+        >
+          <img
+            src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg"
+            alt="Buy me a coffee"
+          />
+          <span style={{ marginLeft: 5 }}>Buy me a coffee</span>
+        </BmcButton>
+
         <Link href="/">
           <a>{this.props.title || 'Secret Thoughts'}</a>
         </Link>

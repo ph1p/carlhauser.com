@@ -34,7 +34,7 @@ export default class MyDocument extends Document {
             content="width=device-width, initial-scale=1.0"
           />
           <link
-            href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
+            href="https://fonts.googleapis.com/css?family=Poppins:400,500,600|Cookie&display=swap"
             rel="stylesheet"
           />
           <link href="/static/global.css" rel="stylesheet" />
