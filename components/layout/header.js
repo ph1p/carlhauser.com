@@ -20,10 +20,15 @@ const Header = styled.header`
   a {
     color: #000;
     text-decoration: none;
+    display: inline-block;
     &:nth-child(2) {
       text-align: right;
     }
   }
+`;
+
+const Title = styled.a`
+  float: left;
 `;
 
 const BmcButton = styled.a`
@@ -34,16 +39,16 @@ const BmcButton = styled.a`
   background-color: #000000;
   border-radius: 3px;
   border: 1px solid transparent;
-  padding: 1px 9px;
+  padding: 1px 9px 1px 7px;
   font-size: 17px;
-  width: 140px;
   letter-spacing: 0.6px;
   box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5);
-  margin: -4px 0 0 0;
+  margin: -3px 0 0 10px;
   font-family: 'Cookie', cursive;
   box-sizing: border-box;
   transition: 0.3s all linear;
-  display:inline-block;
+  display: inline-block;
+  float: left;
   img {
     width: 21px;
     margin-bottom: 1px;
@@ -87,21 +92,21 @@ export default class Head extends React.PureComponent {
   render() {
     return (
       <Header scrollDown={this.state.y > 0}>
-        <BmcButton
-          className="bmc-button"
-          target="_blank"
-          href="https://www.buymeacoffee.com/mjHJCSyoD"
-        >
-          <img
-            src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg"
-            alt="Buy me a coffee"
-          />
-          <span style={{ marginLeft: 5 }}>Buy me a coffee</span>
-        </BmcButton>
-
-        <Link href="/">
-          <a>{this.props.title || 'Secret Thoughts'}</a>
-        </Link>
+        <div>
+          <Link href="/">
+            <Title>{this.props.title || 'Secret Thoughts'}</Title>
+          </Link>
+          <BmcButton
+            target="_blank"
+            href="https://www.buymeacoffee.com/mjHJCSyoD"
+          >
+            <img
+              src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg"
+              alt="Buy me a coffee"
+            />
+            <span style={{ marginLeft: 5 }}>Buy me a coffee</span>
+          </BmcButton>
+        </div>
         {this.props.children}
       </Header>
     );
