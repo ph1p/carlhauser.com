@@ -26,8 +26,8 @@ const Aside = styled.aside`
     top: inherit;
     bottom: 0;
     width: 100%;
-    height: 55px;
-    padding: 0;
+    height: auto;
+    padding: 14px 0;
     grid-column: 1;
     grid-template-columns: 1fr;
     grid-template-rows: none;
@@ -116,6 +116,7 @@ const Social = styled.div`
     display: flex;
     justify-content: space-around;
     flex-direction: row-reverse;
+    padding-bottom: env(safe-area-inset-bottom);
     .icon {
       display: block;
       margin: 0;
