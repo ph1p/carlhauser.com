@@ -1,0 +1,9 @@
+.git
+node_modules
+.next
+.gitignore
+README.md
+now-redirect
+.github
+.env
+CHANGELOG.md
