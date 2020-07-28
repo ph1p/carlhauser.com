@@ -1,14 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
 import Header from '../components/layout/header';
 import Sidebar from '../components/sidebar';
 import ListEntry from '../components/list-entry';
-import TwitterIcon from '../icons/twitter';
-import InstagramIcon from '../icons/instagram';
 import { media } from '../utils/styles';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -52,7 +48,7 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      filter: 'all'
+      filter: 'all',
     };
   }
 
@@ -61,7 +57,7 @@ class Home extends React.Component {
 
     return this.props.entries.length
       ? this.props.entries.filter(
-          e =>
+          (e) =>
             filter === 'all' ||
             (filter === 'done' && e.done) ||
             (filter === 'drafts' && !e.done)
@@ -69,9 +65,9 @@ class Home extends React.Component {
       : [];
   }
 
-  setFilter = option => {
-    this.setState(state => ({
-      filter: state.filter === option ? 'all' : option
+  setFilter = (option) => {
+    this.setState((state) => ({
+      filter: state.filter === option ? 'all' : option,
     }));
   };
 
@@ -81,7 +77,6 @@ class Home extends React.Component {
 
   render() {
     const { filter } = this.state;
-    const { clientHeight } = this.props;
 
     return (
       <>
@@ -89,8 +84,8 @@ class Home extends React.Component {
         <Main ref="main" className="main">
           <Header />
           <Content ref="content">
-            {this.getEntries().map(e => (
-              <ListEntry {...e} key={'entry-' + e.id} />
+            {this.getEntries().map((e) => (
+              <ListEntry {...e} key={`entry-${e.id}`} />
             ))}
           </Content>
           <Sidebar setFilter={this.setFilter} filter={filter} />
@@ -100,6 +95,6 @@ class Home extends React.Component {
   }
 }
 
-export default connect(state => ({
-  entries: state.entries.data
+export default connect((state) => ({
+  entries: state.entries.data,
 }))(Home);

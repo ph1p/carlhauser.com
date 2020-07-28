@@ -3,13 +3,13 @@ const webpack = require('webpack');
 
 const nextConfig = {
   target: 'serverless',
-  webpack: config => {
+  webpack: (config) => {
     config.node = {
       fs: 'empty',
       child_process: 'empty',
       encoding: 'empty',
       net: 'empty',
-      tls: 'empty'
+      tls: 'empty',
     };
 
     config.plugins.push(new webpack.IgnorePlugin(/^encoding$/, /node-fetch/));
@@ -17,7 +17,6 @@ const nextConfig = {
     return config;
   },
   workboxOpts: {
-    swDest: 'static/service-worker.js',
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
@@ -28,7 +27,7 @@ const nextConfig = {
           expiration: {
             maxEntries: 30,
             maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
-            purgeOnQuotaError: true
+            purgeOnQuotaError: true,
           },
           cacheableResponse: {
             statuses: [0, 200],
@@ -41,16 +40,16 @@ const nextConfig = {
         options: {
           cacheName: 'google-fonts-webfonts',
           cacheableResponse: {
-            statuses: [0, 200]
+            statuses: [0, 200],
           },
           expiration: {
             maxAgeSeconds: 60 * 60 * 24 * 365,
-            purgeOnQuotaError: true
-          }
-        }
-      }
-    ]
-  }
+            purgeOnQuotaError: true,
+          },
+        },
+      },
+    ],
+  },
 };
 
 module.exports = withOffline(nextConfig);
