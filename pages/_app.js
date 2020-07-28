@@ -11,42 +11,44 @@ const defaultOGImage = '';
 
 class CarlhauserApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    const { google } = require('googleapis');
+    try {
+      const { google } = require('googleapis');
 
-    const jwt = new google.auth.JWT(
-      process.env.GAPI_CLIENT_EMAIL,
-      null,
-      process.env.GAPI_PRIVATE_KEY.replace(/\\n/g, '\n'),
-      ['https://www.googleapis.com/auth/spreadsheets.readonly']
-    );
+      const jwt = new google.auth.JWT(
+        process.env.GAPI_CLIENT_EMAIL,
+        null,
+        process.env.GAPI_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        ['https://www.googleapis.com/auth/spreadsheets.readonly']
+      );
 
-    return new Promise(async (resolve, reject) => {
-      jwt.authorize(async (err, response) => {
-        if (err) {
-          return;
-        }
+      return new Promise(async (resolve, reject) => {
+        jwt.authorize(async (err, response) => {
+          if (err) {
+            return;
+          }
 
-        const sheets = google.sheets('v4');
+          const sheets = google.sheets('v4');
 
-        const { data } = await sheets.spreadsheets.values.get({
-          auth: jwt,
-          range: 'To-do-Liste!A2:E100',
-          spreadsheetId: process.env.SPREADSHEET_ID,
-        });
+          const { data } = await sheets.spreadsheets.values.get({
+            auth: jwt,
+            range: 'To-do-Liste!A2:E100',
+            spreadsheetId: process.env.SPREADSHEET_ID,
+          });
 
-        if (data) {
-          ctx.store.dispatch(updateEntries(data));
-        }
+          if (data) {
+            ctx.store.dispatch(updateEntries(data));
+          }
 
-        resolve({
-          pageProps: {
-            ...(Component.getInitialProps
-              ? await Component.getInitialProps(ctx)
-              : {}),
-          },
+          resolve({
+            pageProps: {
+              ...(Component.getInitialProps
+                ? await Component.getInitialProps(ctx)
+                : {}),
+            },
+          });
         });
       });
-    });
+    } catch {}
   }
 
   render() {
