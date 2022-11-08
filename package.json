@@ -11,7 +11,7 @@
   "dependencies": {
     "googleapis": "^57.0.0",
     "http2": "^3.3.7",
-    "next": "^9.5.0",
+    "next": "^13.0.2",
     "next-offline": "^5.0.2",
     "next-redux-wrapper": "^6.0.2",
     "react": "^16.13.1",
